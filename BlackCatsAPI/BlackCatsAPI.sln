@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackCatsAPI", "BlackCatsAPI\BlackCatsAPI.csproj", "{D9D5F5DE-7E2F-476C-A9F2-E974460FFD30}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9D5F5DE-7E2F-476C-A9F2-E974460FFD30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D5F5DE-7E2F-476C-A9F2-E974460FFD30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D5F5DE-7E2F-476C-A9F2-E974460FFD30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D5F5DE-7E2F-476C-A9F2-E974460FFD30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B83966E9-4B22-41E5-BDB3-8B625AB3BB99}
+	EndGlobalSection
+EndGlobal
