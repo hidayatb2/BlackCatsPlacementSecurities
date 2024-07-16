@@ -18,4 +18,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlackCats_Application\BlackCats_Application.csproj" />
+    <ProjectReference Include="..\BlackCats_Infrastructure\BlackCats_Infrastructure.csproj" />
+    <ProjectReference Include="..\BlackCats_Persistance\BlackCats_Persistance.csproj" />
+  </ItemGroup>
+
 </Project>
