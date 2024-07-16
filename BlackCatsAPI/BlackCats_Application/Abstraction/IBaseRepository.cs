@@ -13,15 +13,21 @@ namespace BlackCats_Application.Abstraction
 
         Task<IEnumerable<T>> GetAllByAsync();
 
+
         Task<int> AddAsync(T Modal);
+
 
         Task<int> UpdateAsync(T Modal);
 
+
         Task<T> GetbyIdAsync(Guid guid);
+
 
         Task<int> DeleteByIdAsync(Guid id);
 
+
         Task<bool> IsExist(Expression<Func<T, bool>> expression);
+
 
         Task<IEnumerable<T>> FindbyAsync(Expression<Func<T, bool>> expression);
 
