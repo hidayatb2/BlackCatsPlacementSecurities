@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     UserRoutingModule
-  ]
+  ],
+  exports: [HomeComponent, NavComponent, FooterComponent]
 })
 export class UserModule { }
