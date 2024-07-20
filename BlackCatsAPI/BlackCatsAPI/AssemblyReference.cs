@@ -1,6 +1,6 @@
 ﻿namespace BlackCatsAPI
 {
-    public static  class AssemblyRefrence
+    public static  class AssemblyReference
     {
 
         public static IServiceCollection AddApiService(this IServiceCollection services,IConfiguration configuration)

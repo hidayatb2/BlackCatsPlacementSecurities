@@ -2,7 +2,7 @@
 
 namespace BlackCats_Domain
 {
-    public static class AssemblyRefrence
+    public static class AssemblyReference
     {
 
         public static IServiceCollection AddDomainService(this IServiceCollection services)

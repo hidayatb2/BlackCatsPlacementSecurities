@@ -2,7 +2,7 @@
 
 namespace BlackCats_Application
 {
-    public static class AssemblyRefrence
+    public static class AssemblyReference
     {
 
         public static IServiceCollection AddApplicationService(this IServiceCollection services)

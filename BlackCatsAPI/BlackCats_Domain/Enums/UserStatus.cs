@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BlackCats_Domain.Enums
 {
-    public enum UserRole
+    public enum UserStatus
     {
-        Admin=1,
-        Manager=2,
-        Staff=3
+        Active = 1,
+        InActive = 2
     }
 }
