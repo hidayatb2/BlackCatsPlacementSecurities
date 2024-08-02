@@ -12,10 +12,10 @@ namespace BlackCats.Persistence
 {
     public static class AssemblyReferences
     {
-        public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration configuration) 
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContextPool<BlackCatsDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("BlackCatsConnection")!));
+            options.UseSqlServer(configuration.GetConnectionString("SmartLibraryConnection")!));
             return services;
         }
 
