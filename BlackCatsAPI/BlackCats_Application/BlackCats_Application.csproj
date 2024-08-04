@@ -15,4 +15,10 @@
     <ProjectReference Include="..\BlackCats_Domain\BlackCats_Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstraction\IService\" />
+    <Folder Include="Services\" />
+    <Folder Include="RRModels\" />
+  </ItemGroup>
+
 </Project>
