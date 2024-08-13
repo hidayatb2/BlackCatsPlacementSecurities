@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
   </ItemGroup>
@@ -15,4 +17,12 @@
     <ProjectReference Include="..\BlackCats_Domain\BlackCats_Domain.csproj" />
   </ItemGroup>
 
+<<<<<<< Updated upstream
+=======
+  <ItemGroup>
+    <Folder Include="Abstraction\IService\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+>>>>>>> Stashed changes
 </Project>
