@@ -28,6 +28,6 @@ namespace BlackCats_Domain.Entities
 
         public UserStatus UserStatus { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }=false;
     }
 }
