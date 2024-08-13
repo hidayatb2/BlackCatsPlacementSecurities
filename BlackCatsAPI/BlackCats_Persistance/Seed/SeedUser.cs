@@ -28,7 +28,8 @@ namespace BlackCats_Persistance.Seed
                  PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("admin")),
                  PasswordSalt = hmac.Key,
                  UserRole = BlackCats_Domain.Enums.UserRole.Admin,
-                 UserStatus = BlackCats_Domain.Enums.UserStatus.Active
+                 UserStatus = BlackCats_Domain.Enums.UserStatus.Active,
+                 IsDeleted =false
              });
         }
     }
