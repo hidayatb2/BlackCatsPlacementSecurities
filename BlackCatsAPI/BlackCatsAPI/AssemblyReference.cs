@@ -8,6 +8,17 @@
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("BCPSWebClientPolicy", options =>
+                {
+                    options.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                    //.AllowCredentials();
+                });
+
+            });
 
             return services;
         }

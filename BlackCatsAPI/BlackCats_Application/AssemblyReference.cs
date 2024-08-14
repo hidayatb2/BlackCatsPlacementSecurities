@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace BlackCats_Application
 {
@@ -7,7 +8,7 @@ namespace BlackCats_Application
 
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
-            
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }
