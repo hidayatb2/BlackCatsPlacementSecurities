@@ -1,33 +1,16 @@
 <!-- Banner Component -->
-
+<div class="h-[64px]"></div>
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden  md:h-[510px] lg:h-screen">
         <!-- Item 1 -->
+        @for(crousal of Coursal ; track crousal){
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://images.pexels.com/photos/1119152/pexels-photo-1119152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src={{crousal}} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt="...">
         </div>
-        <!-- Item 2 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://images.pexels.com/photos/270220/pexels-photo-270220.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 3 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://images.pexels.com/photos/2375264/pexels-photo-2375264.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 4 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://images.pexels.com/photos/1746207/pexels-photo-1746207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 5 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://images.pexels.com/photos/270220/pexels-photo-270220.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
+        }
+
     </div>
     <!-- Slider indicators -->
     <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
@@ -74,28 +57,93 @@
 
 
 <!-- About Us Component -->
-<div class="about  text-white border-gray-200 dark:bg-gray-900 py-10 md:py-16">
+<div class="about  text-white border-gray-200 dark:bg-gray-900 py-5 md:py-8">
     <h2 class="about-head  text-2xl font-bold text-center py-4 underline-offset-8  underline">About Us</h2>
 
-    <div class="aboutdes px-6 lg:px-48 text-center leading-relaxed text-base md:text-lg">Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Nostrum iste voluptate necessitatibus. Dignissimos quaerat sit aut quod debitis
-        sunt beatae dolorem exercitationem dicta nemo, voluptatem qui corporis, non aspernatur similique atque earum
-        omnis dolorum velit! Corporis assumenda earum qui pariatur beatae suscipit fuga iure consectetur tempora,
-        exercitationem cum. Earum fuga perspiciatis nulla mollitia aperiam placeat eveniet at quia laboriosam architecto
-        delectus perferendis ipsum ullam illum nostrum voluptas, illo, reiciendis sit odio ipsa nemo dignissimos!
-        Perspiciatis sunt voluptatum totam similique soluta saepe dolor doloremque sed dicta earum quasi iusto
-        laboriosam esse nemo natus hic quod ipsa nam magni, facilis nihil numquam. Hic maxime, quasi autem a eaque
-        blanditiis laboriosam magnam aliquam sint rem repellat illo officia molestiae tenetur expedita consectetur,
-        voluptates quo eum rerum! Natus, debitis aspernatur! Quibusdam nostrum similique a, dolor sit quasi quos, eum
-        quisquam nesciunt porro pariatur suscipit illum veritatis, consectetur doloribus maiores veniam voluptates aut
-        at est. Neque, eaque distinctio unde vel, corrupti eveniet voluptate asperiores iure, culpa voluptas
-        exercitationem quidem doloribus quo dolores earum nam tempora ipsam? Provident hic tempora voluptatibus.
-        Repellat, omnis eveniet? Laboriosam sapiente aperiam repudiandae. Quasi, illum iure fugiat, harum facere
-        explicabo similique sequi amet perspiciatis quos tempora blanditiis delectus? Debitis, nesciunt repudiandae.
+    <div class="aboutdes px-6 lg:px-48 text-center leading-relaxed text-base md:text-lg">{{this.About.about}}
+
     </div>
 </div>
 
 
-<h2>Services</h2>
-<h2>Achievements</h2>
-<h2>Contact</h2>
+
+
+<div class="dark:bg-gray-900 pt-5">
+    <h2 class="text-2xl font-bold text-center py-4 text-white underline-offset-8  underline mb-3">Services</h2>
+    <div class="flex justify-around gap-3 flex-wrap gap-y-10 mx-6">
+        @for(service of Services; track service)
+        {
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+            <img class="rounded-t-lg" src={{service.image}} alt="" />
+
+            <div class="p-5">
+
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{service.title}}</h5>
+
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{service.description}}</p>
+
+            </div>
+        </div>
+        }
+    </div>
+
+
+</div>
+
+<div class="dark:bg-gray-900 py-10">
+
+    <h2 class="text-2xl font-bold text-center py-4 text-white underline-offset-8  underline">Achievements</h2>
+    <div class="">
+
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:grid-cols-1 mx-5">
+            @for(item of AchievmentImages ; track item){
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src={{item}} alt="">
+            </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+<div class="dark:bg-gray-900">
+
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us
+            </h2>
+            <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical
+                issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.
+            </p>
+            <form action="#" class="space-y-8">
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your
+                        email</label>
+                    <input type="email" id="email"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                        placeholder="name@flowbite.com" required>
+                </div>
+                <div>
+                    <label for="subject"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
+                    <input type="text" id="subject"
+                        class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                        placeholder="Let us know how we can help you" required>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your
+                        message</label>
+                    <textarea id="message" rows="6"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Leave a comment..."></textarea>
+                </div>
+                <button type="submit"
+                    class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 transition-all">Send
+                    message</button>
+            </form>
+        </div>
+    </section>
+</div>

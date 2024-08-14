@@ -14,9 +14,9 @@ namespace BlackCats_Domain.Entities
 
         public string ContactNo { get; set; } = string.Empty;
 
-        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordHash { get; set; } = null!;
 
-        public byte[] PasswordSalt { get; set; }
+        public byte[] PasswordSalt { get; set; } = null!;
 
         public string? ResetCode { get; set; }
 
@@ -27,5 +27,7 @@ namespace BlackCats_Domain.Entities
         public UserRole UserRole { get; set; }
 
         public UserStatus UserStatus { get; set; }
+
+        public bool IsDeleted { get; set; }=false;
     }
 }
