@@ -31,7 +31,7 @@ namespace BlackCats_Domain.Entities
 
 
         #region NavigationProperties
-        [ForeignKey(nameof(Id))]
+        [ForeignKey(nameof(UserId))]
         public User User { get; set; } =null!;
 
         #endregion
