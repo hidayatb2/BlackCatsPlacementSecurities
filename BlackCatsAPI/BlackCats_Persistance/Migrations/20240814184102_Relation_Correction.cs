@@ -30,12 +30,12 @@ namespace BlackCats_Persistance.Migrations
             migrationBuilder.DeleteData(
                 table: "Users",
                 keyColumn: "Id",
-                keyValue: new Guid("9d971057-4dfa-41b6-990b-d820ef228dbe"));
+                keyValue: new Guid("ee2966ed-d6f6-4af0-8d20-d13b6f5d18a2"));
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "ContactNo", "CreatedAt", "CreatedBy", "Email", "IsDeleted", "Name", "PasswordHash", "PasswordSalt", "RefreshToken", "ResetCode", "TokenExpires", "UserName", "UserRole", "UserStatus" },
-                values: new object[] { new Guid("ff987286-e262-4bb0-be5b-df942b1e9c8a"), "7006342430", new DateTime(2024, 8, 14, 21, 45, 43, 256, DateTimeKind.Local).AddTicks(9966), null, "admin@gmail.com", false, "admin", new byte[] { 184, 130, 156, 110, 49, 15, 106, 217, 164, 164, 176, 3, 217, 71, 226, 20, 55, 21, 193, 92, 132, 193, 92, 194, 171, 49, 225, 240, 67, 135, 73, 242 }, new byte[] { 153, 8, 12, 164, 8, 213, 22, 110, 125, 140, 222, 153, 151, 215, 227, 24, 149, 173, 214, 68, 25, 38, 146, 142, 148, 180, 166, 170, 207, 160, 18, 116, 166, 40, 222, 154, 80, 239, 30, 106, 113, 199, 168, 239, 8, 208, 6, 16, 45, 146, 2, 235, 145, 101, 34, 51, 147, 18, 223, 16, 171, 22, 65, 129 }, "", null, null, "admin", 1, 1 });
+                columns: new[] { "Id", "ContactNo", "CreatedAt", "CreatedBy", "Email", "IsDeleted", "Name", "PasswordHash", "PasswordSalt", "ResetCode", "UserName", "UserRole", "UserStatus" },
+                values: new object[] { new Guid("af056936-524e-43d2-95ed-f746ca6ccb46"), "7006342430", new DateTime(2024, 8, 15, 0, 11, 1, 713, DateTimeKind.Local).AddTicks(1018), null, "admin@gmail.com", false, "admin", new byte[] { 32, 28, 25, 64, 28, 65, 50, 32, 240, 111, 44, 102, 168, 149, 201, 158, 134, 3, 100, 37, 228, 27, 44, 87, 231, 110, 234, 125, 18, 94, 111, 32 }, new byte[] { 56, 189, 33, 185, 143, 23, 168, 6, 84, 73, 206, 75, 143, 135, 179, 3, 249, 50, 115, 117, 166, 69, 229, 252, 9, 111, 204, 107, 10, 222, 204, 50, 70, 7, 81, 201, 103, 132, 45, 201, 207, 18, 146, 180, 93, 159, 108, 188, 27, 84, 150, 3, 60, 89, 48, 71, 214, 8, 156, 12, 20, 107, 48, 159 }, null, "admin", 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Wages_EmployeeId",
@@ -128,12 +128,12 @@ namespace BlackCats_Persistance.Migrations
             migrationBuilder.DeleteData(
                 table: "Users",
                 keyColumn: "Id",
-                keyValue: new Guid("ff987286-e262-4bb0-be5b-df942b1e9c8a"));
+                keyValue: new Guid("af056936-524e-43d2-95ed-f746ca6ccb46"));
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "ContactNo", "CreatedAt", "CreatedBy", "Email", "IsDeleted", "Name", "PasswordHash", "PasswordSalt", "RefreshToken", "ResetCode", "TokenExpires", "UserName", "UserRole", "UserStatus" },
-                values: new object[] { new Guid("9d971057-4dfa-41b6-990b-d820ef228dbe"), "7006342430", new DateTime(2024, 7, 28, 22, 29, 35, 568, DateTimeKind.Local).AddTicks(6043), null, "admin@gmail.com", false, "admin", new byte[] { 112, 161, 95, 48, 224, 58, 74, 117, 43, 145, 33, 18, 212, 78, 220, 184, 89, 179, 170, 94, 1, 200, 191, 226, 126, 53, 79, 207, 196, 188, 21, 48 }, new byte[] { 222, 178, 181, 253, 21, 249, 171, 208, 241, 88, 219, 181, 135, 255, 129, 254, 71, 227, 248, 9, 221, 91, 11, 232, 121, 145, 64, 243, 82, 115, 245, 212, 106, 227, 247, 78, 103, 59, 80, 236, 244, 113, 232, 203, 60, 107, 161, 123, 73, 189, 136, 62, 228, 5, 237, 135, 93, 241, 138, 113, 174, 31, 6, 114 }, "", null, null, "admin", 1, 1 });
+                columns: new[] { "Id", "ContactNo", "CreatedAt", "CreatedBy", "Email", "IsDeleted", "Name", "PasswordHash", "PasswordSalt", "ResetCode", "UserName", "UserRole", "UserStatus" },
+                values: new object[] { new Guid("ee2966ed-d6f6-4af0-8d20-d13b6f5d18a2"), "7006342430", new DateTime(2024, 8, 14, 21, 44, 47, 817, DateTimeKind.Local).AddTicks(4258), null, "admin@gmail.com", false, "admin", new byte[] { 181, 83, 127, 154, 158, 117, 250, 197, 48, 47, 193, 6, 92, 163, 86, 53, 192, 66, 216, 135, 129, 167, 197, 104, 157, 194, 57, 253, 154, 10, 119, 69 }, new byte[] { 4, 180, 201, 249, 166, 238, 154, 95, 21, 26, 248, 157, 172, 54, 19, 50, 3, 203, 128, 50, 248, 99, 70, 34, 111, 74, 89, 252, 192, 243, 163, 6, 174, 6, 239, 48, 170, 43, 183, 231, 162, 209, 202, 152, 147, 249, 250, 252, 220, 47, 74, 47, 77, 207, 87, 172, 1, 150, 224, 103, 228, 97, 12, 138 }, null, "admin", 1, 1 });
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Clients_Users_Id",

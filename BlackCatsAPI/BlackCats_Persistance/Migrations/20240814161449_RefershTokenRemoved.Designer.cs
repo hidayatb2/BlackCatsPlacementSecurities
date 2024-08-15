@@ -4,6 +4,7 @@ using BlackCats_Persistance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlackCats_Persistance.Migrations
 {
     [DbContext(typeof(BCPSDbContext))]
-    partial class BCPSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240814161449_RefershTokenRemoved")]
+    partial class RefershTokenRemoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +55,6 @@ namespace BlackCats_Persistance.Migrations
             modelBuilder.Entity("BlackCats_Domain.Entities.Client", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Address")
@@ -95,15 +97,12 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasIndex("AgreementDocumentId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("BlackCats_Domain.Entities.Contract", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("ClientId")
@@ -123,15 +122,12 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.ToTable("Contracts");
                 });
 
             modelBuilder.Entity("BlackCats_Domain.Entities.Employee", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<long>("AadhaarNumber")
@@ -174,8 +170,6 @@ namespace BlackCats_Persistance.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
 
                     b.ToTable("Employees");
                 });
@@ -238,14 +232,14 @@ namespace BlackCats_Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5dadbeda-18ed-4c39-acd8-90cf7206962b"),
+                            Id = new Guid("ee2966ed-d6f6-4af0-8d20-d13b6f5d18a2"),
                             ContactNo = "7006342430",
-                            CreatedAt = new DateTime(2024, 8, 15, 0, 46, 8, 577, DateTimeKind.Local).AddTicks(8483),
+                            CreatedAt = new DateTime(2024, 8, 14, 21, 44, 47, 817, DateTimeKind.Local).AddTicks(4258),
                             Email = "admin@gmail.com",
                             IsDeleted = false,
                             Name = "admin",
-                            PasswordHash = new byte[] { 36, 50, 97, 36, 49, 49, 36, 111, 47, 85, 46, 98, 113, 115, 83, 46, 109, 76, 46, 68, 80, 78, 98, 88, 77, 103, 52, 86, 101, 80, 82, 115, 84, 47, 86, 47, 114, 71, 103, 112, 46, 52, 81, 98, 66, 56, 49, 51, 118, 118, 103, 70, 100, 54, 119, 109, 73, 117, 116, 75 },
-                            PasswordSalt = new byte[] { 36, 50, 97, 36, 49, 49, 36, 111, 47, 85, 46, 98, 113, 115, 83, 46, 109, 76, 46, 68, 80, 78, 98, 88, 77, 103, 52, 86, 101 },
+                            PasswordHash = new byte[] { 181, 83, 127, 154, 158, 117, 250, 197, 48, 47, 193, 6, 92, 163, 86, 53, 192, 66, 216, 135, 129, 167, 197, 104, 157, 194, 57, 253, 154, 10, 119, 69 },
+                            PasswordSalt = new byte[] { 4, 180, 201, 249, 166, 238, 154, 95, 21, 26, 248, 157, 172, 54, 19, 50, 3, 203, 128, 50, 248, 99, 70, 34, 111, 74, 89, 252, 192, 243, 163, 6, 174, 6, 239, 48, 170, 43, 183, 231, 162, 209, 202, 152, 147, 249, 250, 252, 220, 47, 74, 47, 77, 207, 87, 172, 1, 150, 224, 103, 228, 97, 12, 138 },
                             UserName = "admin",
                             UserRole = 1,
                             UserStatus = 1
@@ -255,7 +249,6 @@ namespace BlackCats_Persistance.Migrations
             modelBuilder.Entity("BlackCats_Domain.Entities.Wages", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -284,8 +277,6 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
                     b.ToTable("Wages");
                 });
 
@@ -299,7 +290,7 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasOne("BlackCats_Domain.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -312,7 +303,7 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.HasOne("BlackCats_Domain.Entities.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -323,7 +314,7 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.HasOne("BlackCats_Domain.Entities.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -334,7 +325,7 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.HasOne("BlackCats_Domain.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -20,10 +20,6 @@ namespace BlackCats_Domain.Entities
 
         public string? ResetCode { get; set; }
 
-        public string? RefreshToken { get; set; } = string.Empty;
-
-        public DateTime? TokenExpires { get; set; }
-
         public UserRole UserRole { get; set; }
 
         public UserStatus UserStatus { get; set; }

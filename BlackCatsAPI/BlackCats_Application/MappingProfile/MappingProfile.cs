@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BlackCats_Application.RRModels;
+using BlackCats_Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace BlackCats_Application.MappingProfile
     {
         public UserProfile()
         {
-            
+            CreateMap<User, LoginResponse>();
         }
 
     }
