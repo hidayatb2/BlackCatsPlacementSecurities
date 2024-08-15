@@ -7,7 +7,9 @@ import { AboutComponent } from './about/about.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './login/login.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './user.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,15 @@ import { LoginComponent } from './login/login.component';
     AboutComponent,
     NavComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  exports: [HomeComponent, NavComponent, FooterComponent]
+  exports: [],
 })
-export class UserModule { }
+export class UserModule {}
