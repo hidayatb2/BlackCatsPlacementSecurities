@@ -8,8 +8,8 @@ import { AccountService } from '../service/services';
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('admin@gmail.com'),
+    password: new FormControl('admin'),
   });
 
   constructor(private accountService: AccountService) {}
@@ -18,7 +18,16 @@ export class LoginComponent implements OnInit {
     this.user();
   }
 
-  user() {
-    this.accountService.getUser().subscribe((res) => console.log(res));
+  verifyLogin() {
+    this.accountService.verifyLogin(this.loginForm).subscribe((res:any) => {
+      let data = JSON.stringify(res.result);
+      console.log(res.result);
+      if (res) {
+        // data = JSON.stringify(res?.result)
+        localStorage['user' ] = data
+      }
+    });
   }
+
+
 }
