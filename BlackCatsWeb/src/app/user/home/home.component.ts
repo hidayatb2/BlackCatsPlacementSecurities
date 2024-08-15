@@ -32,7 +32,7 @@ export class HomeComponent {
 
   getCoursalData() {
     this.Coursal = CoursalData;
-    // console.log(this.Coursal);
+    console.log(this.Coursal);
   }
 
   getAchievmentImagesData() {
