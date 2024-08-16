@@ -40,6 +40,7 @@ namespace BlackCatsAPI
                 };
             });
 
+
             return services;
         }
     }

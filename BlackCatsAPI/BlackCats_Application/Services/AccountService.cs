@@ -25,7 +25,7 @@ public class AccountService : IAccountService
         var user = await _accountRepository.GetUserByEmail(loginDto);
         if (loginDto is null || user is null ) return APIResponse<LoginResponse>.ErrorResponse("Enter valid Email", APIStatusCodes.NotFound);
 
-        if (!AppEncryption.VerifyPassword(loginDto.Password, user.PasswordHash)) return APIResponse<LoginResponse>.ErrorResponse("Invalid Password", APIStatusCodes.Unauthorized);
+        if (!AppEncryption.VerifyPassword(loginDto.Password, user.PasswordHash)) return APIResponse<LoginResponse>.ErrorResponse("Invalid Credentials", APIStatusCodes.Unauthorized);
 
         LoginResponse loginResponse = _mapper.Map<LoginResponse>(user);
         loginResponse.Token = _tokenService.GenerateJWToken(loginResponse);

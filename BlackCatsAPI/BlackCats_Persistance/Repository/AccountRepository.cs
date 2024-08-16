@@ -13,11 +13,20 @@ public class AccountRepository : BaseRepository<User>, IAccountRepository
 
     }
 
+    public Task<IEnumerable<User>> GetAllUsers()
+    {
+        throw new NotImplementedException();
+    }
 
     public async Task<User> GetUserByEmail(LoginDto loginDto)
     {
         string query = @$"SELECT * FROM USERS WHERE EMAIL = '{loginDto.Email}'";
 
         return await FirstOrDefaultAsync<User>(query);
+    }
+
+    public Task<User> GetUserById(Guid id)
+    {
+        throw new NotImplementedException();
     }
 }

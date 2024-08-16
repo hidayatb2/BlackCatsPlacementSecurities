@@ -14,6 +14,9 @@ namespace BlackCats_Application.MappingProfile
         public UserProfile()
         {
             CreateMap<User, LoginResponse>();
+            CreateMap<User,UserResponse>();
+            CreateMap<UserRequest, User>();
+            CreateMap<User,UserUpdateResponse>();
         }
 
     }
