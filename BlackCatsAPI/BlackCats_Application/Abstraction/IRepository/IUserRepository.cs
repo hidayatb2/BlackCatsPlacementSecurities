@@ -9,7 +9,10 @@ namespace BlackCats_Application.Abstraction.IRepository
 {
     public interface IUserRepository:IBaseRepository<User>
     {
+        Task<IEnumerable<User>> GetAllUsers();
 
-        
+        Task<User> GetUserById(Guid id);
+
+
     }
 }
