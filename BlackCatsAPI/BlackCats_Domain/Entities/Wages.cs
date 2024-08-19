@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlackCats_Domain.Entities
 {
@@ -25,7 +20,7 @@ namespace BlackCats_Domain.Entities
 
         #region Navigation Properties
 
-        [ForeignKey(nameof(Id))]
+        [ForeignKey(nameof(EmployeeId))]
         public Employee Employee { get; set; } = null!;
 
         #endregion

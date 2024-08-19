@@ -2,7 +2,7 @@
 
 namespace BlackCats_Application.Utilities;
 
-public static  class AppEncryption
+public static class AppEncryption
 {
     public static byte[] GenerateSalt()
     {
@@ -10,10 +10,16 @@ public static  class AppEncryption
         return Encoding.UTF8.GetBytes(salt);
     }
 
-    public static byte[] PasswordHashig(string password,byte[] salt)
+    public static byte[] PasswordHashing(string password, byte[] salt)
     {
-        var passwordHashing=BCrypt.Net.BCrypt.HashPassword(password,Encoding.UTF8.GetString(salt));
+        var passwordHashing = BCrypt.Net.BCrypt.HashPassword(password, Encoding.UTF8.GetString(salt));
         return Encoding.UTF8.GetBytes(passwordHashing);
+    }
+
+    public static bool VerifyPassword(string password, byte[] hash )
+    {
+        string passwordHash =  Encoding.UTF8.GetString(hash);
+        return BCrypt.Net.BCrypt.Verify(password, passwordHash);
     }
 
 }

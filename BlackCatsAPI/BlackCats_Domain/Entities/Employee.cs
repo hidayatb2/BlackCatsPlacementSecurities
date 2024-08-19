@@ -32,7 +32,7 @@ namespace BlackCats_Domain.Entities
 
 
         #region Navigation Properties
-        [ForeignKey(nameof(Id))]
+        [ForeignKey(nameof(ClientId))]
         public Client Client { get; set; } = null!;
         #endregion
 

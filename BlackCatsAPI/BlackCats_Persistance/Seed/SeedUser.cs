@@ -1,4 +1,5 @@
-﻿using BlackCats_Domain.Entities;
+﻿using BlackCats_Application.Utilities;
+using BlackCats_Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -16,21 +17,21 @@ namespace BlackCats_Persistance.Seed
         public void Configure(EntityTypeBuilder<User> builder)
         {
             using HMACSHA256 hmac = new HMACSHA256();
-            builder.HasData(
-             new User
-             {
-                 Id = Guid.NewGuid(),
-                 UserName = "admin",
-                 Name = "admin",
-                 ContactNo = "7006342430",
-                 Email = "admin@gmail.com",
-                 CreatedAt = DateTime.Now,
-                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("admin")),
-                 PasswordSalt = hmac.Key,
-                 UserRole = BlackCats_Domain.Enums.UserRole.Admin,
-                 UserStatus = BlackCats_Domain.Enums.UserStatus.Active,
-                 IsDeleted =false
-             });
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                UserName = "admin",
+                Name = "admin",
+                ContactNo = "7006342430",
+                Email = "admin@gmail.com",
+                CreatedAt = DateTime.Now,
+                PasswordSalt = AppEncryption.GenerateSalt(),
+                UserRole = BlackCats_Domain.Enums.UserRole.Admin,
+                UserStatus = BlackCats_Domain.Enums.UserStatus.Active,
+                IsDeleted = false
+            };
+            user.PasswordHash = AppEncryption.PasswordHashing("admin", user.PasswordSalt);
+            builder.HasData(user);
         }
     }
 }

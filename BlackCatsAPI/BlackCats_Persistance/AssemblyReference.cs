@@ -1,8 +1,9 @@
-﻿using BlackCats_Persistance.Data;
+﻿using BlackCats_Application.Abstraction.IRepository;
+using BlackCats_Persistance.Data;
+using BlackCats_Persistance.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace BlackCats_Persistance
 {
@@ -19,6 +20,9 @@ namespace BlackCats_Persistance
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors();
             });
+            services.AddScoped<IAccountRepository, AccountRepository>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
 

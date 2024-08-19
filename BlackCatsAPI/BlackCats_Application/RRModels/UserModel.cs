@@ -23,11 +23,7 @@ public class UserRequest
 
 
     [Required]
-    public string Password { get; set; } = string.Empty;
-
-
-    [Compare(nameof(Password),ErrorMessage ="Password Not Matched")]
-    public string ConfirmPassword { get; set; } =string.Empty;
+    public UserRole UserRole { get; set; }
 
 }
 
@@ -53,4 +49,28 @@ public class UserResponse
 
 
     public UserStatus UserStatus { get; set; }
+}
+
+
+public class UserUpdateRequest
+{
+    public Guid Id { get; set; }
+
+
+    public string Name { get; set; } = string.Empty;
+
+
+    public string ContactNo { get; set; } = string.Empty;
+
+
+    public UserRole UserRole { get; set; }
+
+
+    public UserStatus UserStatus { get; set; }
+}
+
+
+public class UserUpdateResponse:UserUpdateRequest
+{
+    
 }
