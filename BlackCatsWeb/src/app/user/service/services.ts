@@ -10,11 +10,12 @@ export class AccountService {
 
   constructor(private http: HttpClient) {}
 
-  getUser() {
+  verifyLogin(req: any) {
+    console.log(req);
     const body = {
-      Email: 'admin@gmail.com',
-      Password: 'admin',
-    };
+      email : req.value.email,
+      password : req.value.password
+    }
     return this.http.post(`${this.baseURL}Account/login`, body);
   }
 }

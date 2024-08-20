@@ -5,23 +5,29 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
-  { path: '', component : UserComponent , children : [
-   
-    {
-      path : '', redirectTo : "login" , pathMatch : 'full'
-    },
-    {
-      path : 'home', component : HomeComponent  
-    },
-    {
-      path : 'login', component : LoginComponent
-    }
-    
-  ] },
+  {
+    path: '',
+    component: UserComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {}
