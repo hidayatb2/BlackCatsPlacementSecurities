@@ -14,20 +14,15 @@ export class LoginComponent implements OnInit {
 
   constructor(private accountService: AccountService) {}
 
-  ngOnInit(): void {
-    this.user();
-  }
+  ngOnInit(): void {}
 
   verifyLogin() {
-    this.accountService.verifyLogin(this.loginForm).subscribe((res:any) => {
+    this.accountService.verifyLogin(this.loginForm).subscribe((res: any) => {
       let data = JSON.stringify(res.result);
       console.log(res.result);
       if (res) {
-        // data = JSON.stringify(res?.result)
-        localStorage['user' ] = data
+        localStorage['user'] = data;
       }
     });
   }
-
-
 }

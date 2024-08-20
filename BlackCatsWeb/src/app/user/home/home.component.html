@@ -1,13 +1,12 @@
 <!-- Banner Component -->
-<div class="h-[64px]"></div>
+<!-- <div class="h-[64px]"></div> -->
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden  md:h-[510px] lg:h-screen">
         <!-- Item 1 -->
-        @for(crousal of Coursal ; track crousal){
+        @for(img of Coursal ; track img){
         <div class=" duration-700 ease-in-out" data-carousel-item>
-            <img src={{crousal}} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt="...">
+            <img src={{img}} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
         }
 
