@@ -8,17 +8,21 @@ import { AccountService } from '../service/services';
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('admin@gmail.com'),
+    password: new FormControl('admin'),
   });
 
   constructor(private accountService: AccountService) {}
 
-  ngOnInit(): void {
-    this.user();
-  }
+  ngOnInit(): void {}
 
-  user() {
-    this.accountService.getUser().subscribe((res) => console.log(res));
+  verifyLogin() {
+    this.accountService.verifyLogin(this.loginForm).subscribe((res: any) => {
+      let data = JSON.stringify(res.result);
+      console.log(res.result);
+      if (res) {
+        localStorage['user'] = data;
+      }
+    });
   }
 }
