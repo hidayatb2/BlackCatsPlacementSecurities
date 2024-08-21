@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import {
   aboutUsData,
   CoursalData,
@@ -13,7 +13,7 @@ import { About , Service } from '../Interface/interface';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
   About: any = [];
   Coursal: String[] = [];
   AchievmentImages: String[] = [];
@@ -42,4 +42,21 @@ export class HomeComponent {
     this.Services = ServicesData;
     // console.log(this.Services);
   }
+
+ 
+ngAfterViewInit() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => { // Changed to an arrow function
+      e.preventDefault();
+
+      const targetId = anchor.getAttribute('href'); // Use anchor directly
+      if (targetId) { // Check if targetId is not null
+        document.querySelector(targetId)?.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+}
+
 }
