@@ -30,7 +30,7 @@ namespace BlackCats_Application.Abstraction.IRepository
         Task<bool> IsExist(Expression<Func<T, bool>> expression);
 
 
-        Task<IEnumerable<T>> FindbyAsync(Expression<Func<T, bool>> expression);
+        IEnumerable<T> Findby<T>(Expression<Func<T, bool>> expression);
         #endregion
 
         #region Dapper Methods

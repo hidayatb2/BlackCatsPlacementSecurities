@@ -15,7 +15,7 @@ namespace BlackCatsAPI
             {
                 opt.AddPolicy("BCPSWebClientPolicy", options =>
                 {
-                    options.WithOrigins("https://localhost:4200","https://blackcatssecurities.netlify.app")
+                    options.WithOrigins("http://localhost:4200","https://blackcatssecurities.netlify.app")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
                     //.AllowCredentials();

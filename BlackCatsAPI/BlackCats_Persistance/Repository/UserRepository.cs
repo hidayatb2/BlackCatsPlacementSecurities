@@ -14,21 +14,31 @@ namespace BlackCats_Persistance.Repository
             this.context = context;
         }
 
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public Task<IEnumerable<User>> GetAllUsers()
         {
-
-            string query = $@"SELECT * FROM USERS WHERE ISDELETED = FALSE;";
-
-            return await QueryAsync<User>(query);
-
-
+            throw new NotImplementedException();
         }
 
-        public async Task<User> GetUserById(Guid id)
+        public Task<User> GetUserById(Guid id)
         {
-            string query = $@"SELECT * FROM USERS WHERE Id=@Id;";
-            return await FirstOrDefaultAsync<User>(query, new { id });
-
+            throw new NotImplementedException();
         }
+
+        //public async Task<IEnumerable<User>> GetAllUsers()
+        //{
+
+        //    string query = $@"SELECT * FROM USERS WHERE ISDELETED = FALSE;";
+
+        //    return await QueryAsync<User>(query);
+
+
+        //}
+
+        //public async Task<User> GetUserById(Guid id)
+        //{
+        //    string query = $@"SELECT * FROM USERS WHERE Id=@Id;";
+        //    return await FirstOrDefaultAsync<User>(query, new { id });
+
+        //}
     }
 }
