@@ -12,13 +12,9 @@ namespace BlackCats_Persistance
         public static IServiceCollection AddPersistanceService(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString(nameof(BCPSDbContext));
-            services.AddDbContext<BCPSDbContext>(options =>
+            services.AddDbContextPool<BCPSDbContext>(options =>
             {
-                options.UseMySql(connectionString,
-                    ServerVersion.AutoDetect(connectionString))
-                .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
-                .EnableSensitiveDataLogging()
-                .EnableDetailedErrors();
+                options.UseSqlServer(connectionString);
             });
             services.AddScoped<IAccountRepository, AccountRepository>();
 

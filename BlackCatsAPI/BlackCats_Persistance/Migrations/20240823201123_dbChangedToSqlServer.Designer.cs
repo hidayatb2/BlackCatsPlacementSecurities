@@ -12,37 +12,37 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlackCats_Persistance.Migrations
 {
     [DbContext(typeof(BCPSDbContext))]
-    [Migration("20240814191609_SeededUserPasswordCorrection")]
-    partial class SeededUserPasswordCorrection
+    [Migration("20240823201123_dbChangedToSqlServer")]
+    partial class dbChangedToSqlServer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("BlackCats_Domain.Entities.AppFile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FilePath")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ModuleId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ModuleType")
                         .HasColumnType("int");
@@ -56,34 +56,34 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateOnly>("AgreementDate")
                         .HasColumnType("date");
 
                     b.Property<Guid>("AgreementDocumentId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ContactNo")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SecurityDeposit")
                         .HasColumnType("int");
@@ -92,7 +92,7 @@ namespace BlackCats_Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -107,16 +107,16 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ClientId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateOnly>("From")
                         .HasColumnType("date");
@@ -135,30 +135,30 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<long>("AadhaarNumber")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("BankAccountNo")
                         .HasColumnType("bigint");
 
                     b.Property<Guid>("ClientId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ContactNo")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateOnly>("DateOfJoining")
                         .HasColumnType("date");
@@ -167,14 +167,14 @@ namespace BlackCats_Persistance.Migrations
                         .HasColumnType("date");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsUniformFeePaid")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -187,43 +187,43 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ContactNo")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("longblob");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
-                        .HasColumnType("longblob");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("ResetCode")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserRole")
                         .HasColumnType("int");
@@ -241,14 +241,14 @@ namespace BlackCats_Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5dadbeda-18ed-4c39-acd8-90cf7206962b"),
+                            Id = new Guid("a506c0d7-8070-4ddc-a72f-8d6277587b47"),
                             ContactNo = "7006342430",
-                            CreatedAt = new DateTime(2024, 8, 15, 0, 46, 8, 577, DateTimeKind.Local).AddTicks(8483),
+                            CreatedAt = new DateTime(2024, 8, 24, 1, 41, 21, 596, DateTimeKind.Local).AddTicks(599),
                             Email = "admin@gmail.com",
                             IsDeleted = false,
-                            Name = "admin",
-                            PasswordHash = new byte[] { 36, 50, 97, 36, 49, 49, 36, 111, 47, 85, 46, 98, 113, 115, 83, 46, 109, 76, 46, 68, 80, 78, 98, 88, 77, 103, 52, 86, 101, 80, 82, 115, 84, 47, 86, 47, 114, 71, 103, 112, 46, 52, 81, 98, 66, 56, 49, 51, 118, 118, 103, 70, 100, 54, 119, 109, 73, 117, 116, 75 },
-                            PasswordSalt = new byte[] { 36, 50, 97, 36, 49, 49, 36, 111, 47, 85, 46, 98, 113, 115, 83, 46, 109, 76, 46, 68, 80, 78, 98, 88, 77, 103, 52, 86, 101 },
+                            Name = "Admin",
+                            PasswordHash = new byte[] { 36, 50, 97, 36, 49, 49, 36, 106, 66, 121, 108, 47, 75, 46, 110, 79, 104, 81, 48, 119, 122, 72, 78, 57, 88, 105, 97, 118, 79, 103, 67, 102, 69, 100, 87, 81, 78, 53, 116, 56, 53, 114, 109, 81, 100, 81, 113, 118, 68, 105, 118, 107, 98, 87, 54, 46, 121, 82, 46, 83 },
+                            PasswordSalt = new byte[] { 36, 50, 97, 36, 49, 49, 36, 106, 66, 121, 108, 47, 75, 46, 110, 79, 104, 81, 48, 119, 122, 72, 78, 57, 88, 105, 97, 118, 79 },
                             UserName = "admin",
                             UserRole = 1,
                             UserStatus = 1
@@ -259,13 +259,13 @@ namespace BlackCats_Persistance.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DailyWages")
                         .HasColumnType("int");
@@ -274,7 +274,7 @@ namespace BlackCats_Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<Guid>("EmployeeId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("NoOfWorkingDays")
                         .HasColumnType("int");

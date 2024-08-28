@@ -22,9 +22,10 @@ namespace BlackCatsAPI.Controllers
 
 
         [HttpGet]
-        public async Task<IResult> GetAllUsers()
+        public async Task<ActionResult> GetAllUsers()
         {
-            return this.ApiResult(await service.GetAllUsers());
+            //return this.ApiResult(await service.GetAllUsers());
+            return Ok("hi"); 
         }
 
         [HttpPost]

@@ -8,16 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using BlackCats_Persistance.Data;
-using MySqlConnector;
 using Dapper;
 using System.Data;
 using BlackCats_Application.Abstraction.IRepository;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace BlackCats_Persistance.Respository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity, new()
     {
         private readonly BCPSDbContext context;
+
+        public BaseRepository(BCPSDbContext context, IConfiguration configuration)
+        {
+            this.context = context;
+        }
 
         public BaseRepository(BCPSDbContext context)
         {
@@ -38,14 +44,14 @@ namespace BlackCats_Persistance.Respository
             return await context.SaveChangesAsync();
         }
 
-        
 
-        public async Task<IEnumerable<T>> FindbyAsync(Expression<Func<T, bool>> expression)
+
+        public IQueryable<T> FindBy<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-           return await context.Set<T>().Where(expression).ToListAsync();
+            return context.Set<T>().Where(predicate);
         }
 
-       
+
 
         public async Task<IEnumerable<T>> GetAllByAsync()
         {
@@ -62,36 +68,58 @@ namespace BlackCats_Persistance.Respository
             return await context.Set<T>().AnyAsync(expression);
         }
 
-       
+
 
         public async Task<int> UpdateAsync(T Modal)
         {
             context.Set<T>().Update(Modal);
-          return  await context.SaveChangesAsync();
+            return await context.SaveChangesAsync();
+        }
+
+        public Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string query, object? param = null, CommandType commandType = CommandType.Text, IDbTransaction transaction = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> ExecuteAsync(string query, object? param = null, CommandType commandType = CommandType.Text, IDbTransaction transaction = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TEntity> FirstOrDefaultAsync<TEntity>(string query, object? param = null, CommandType commandType = CommandType.Text, IDbTransaction transaction = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<T1> Findby<T1>(Expression<Func<T1, bool>> expression)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
 
 
         #region DapperMethods
-        public async Task<TEntity> FirstOrDefaultAsync<TEntity>(string query, object? param = null,CommandType commandType = CommandType.Text,IDbTransaction transaction = null)
-        {
-            MySqlConnection connection = new(context.Database.GetConnectionString());
-            return await connection.QueryFirstOrDefaultAsync<TEntity>(query,param,transaction,null,commandType);
-        }
+        //public async Task<TEntity> FirstOrDefaultAsync<TEntity>(string query, object? param = null, CommandType commandType = CommandType.Text, IDbTransaction? transaction = null)
+        //{
+        //    using SqlConnection connection = new(_configuration);
+        //    await connection.OpenAsync();
+        //    return await connection.QueryFirstOrDefaultAsync<TEntity>(query, param, transaction, null, commandType);
+        //}
 
-        public async Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string query, object? param = null,CommandType commandType = CommandType.Text,IDbTransaction transaction = null)
-        {
-            MySqlConnection connection = new(context.Database.GetConnectionString());
-            return await connection.QueryAsync<TEntity>(query,param,transaction,null,commandType);
+        //public async Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string query, object? param = null, CommandType commandType = CommandType.Text, IDbTransaction? transaction = null)
+        //{
+        //    using SqlConnection connection = new(_configuration);
+        //    await connection.OpenAsync();
+        //    return await connection.QueryAsync<TEntity>(query, param, transaction, null, commandType);
+        //}
 
-        }
-
-        public async Task<int> ExecuteAsync(string query, object? param = null,CommandType commandType = CommandType.Text,IDbTransaction transaction = null)
-        {
-            MySqlConnection connection  = new(context.Database.GetConnectionString());
-            return await connection.ExecuteAsync(query,param,transaction,null,commandType);
-        }
+        //public async Task<int> ExecuteAsync(string query, object? param = null, CommandType commandType = CommandType.Text, IDbTransaction? transaction = null)
+        //{
+        //    using SqlConnection connection = new(_configuration);
+        //    await connection.OpenAsync();
+        //    return await connection.ExecuteAsync(query, param, transaction, null, commandType);
+        //}
         #endregion
     }
 
