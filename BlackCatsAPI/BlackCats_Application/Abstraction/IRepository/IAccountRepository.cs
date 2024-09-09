@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlackCats_Application.Abstraction.IRepository
 {
-    public interface IAccountRepository : IBaseRepository<User>
+    public interface IAccountRepository : IUserRepository
     {
         Task<User> GetUserByEmail(LoginDto loginDto);
     }

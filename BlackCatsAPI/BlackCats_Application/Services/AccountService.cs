@@ -4,7 +4,6 @@ using BlackCats_Application.Abstraction.IService;
 using BlackCats_Application.RRModels;
 using BlackCats_Application.Shared;
 using BlackCats_Application.Utilities;
-using BlackCats_Domain.Entities;
 
 namespace BlackCats_Application.Services;
 
@@ -23,7 +22,7 @@ public class AccountService : IAccountService
 
     public async Task<APIResponse<LoginResponse>> Login(LoginDto loginDto)
     {
-        var user = _accountRepository.Findby<User>(u => u.Email == loginDto.Email).FirstOrDefault();
+        var user = await _accountRepository.GetUserByEmail(loginDto);
         if (loginDto is null || user is null ) return APIResponse<LoginResponse>.ErrorResponse("Enter valid Email", APIStatusCodes.NotFound);
 
         if (!AppEncryption.VerifyPassword(loginDto.Password, user.PasswordHash)) return APIResponse<LoginResponse>.ErrorResponse("Invalid Credentials", APIStatusCodes.Unauthorized);

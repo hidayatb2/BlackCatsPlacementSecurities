@@ -7,8 +7,6 @@ namespace BlackCats_Persistance.Data
     {
         public BCPSDbContext(DbContextOptions<BCPSDbContext> options) : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-            ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }
@@ -30,11 +28,7 @@ namespace BlackCats_Persistance.Data
         #region SeedValue Function
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            var dbContextHandler = new DbContextHandler();
-
-            dbContextHandler.SeedInitialData(modelBuilder);
+            modelBuilder.ApplyConfiguration(new SeedUser());
         }
         #endregion
     }
