@@ -46,7 +46,7 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppFiles");
+                    b.ToTable("APPFILES");
                 });
 
             modelBuilder.Entity("BlackCats_Domain.Entities.Client", b =>
@@ -97,7 +97,7 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Clients");
+                    b.ToTable("CLIENTS");
                 });
 
             modelBuilder.Entity("BlackCats_Domain.Entities.Contract", b =>
@@ -125,7 +125,7 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Contracts");
+                    b.ToTable("CONTRACTS");
                 });
 
             modelBuilder.Entity("BlackCats_Domain.Entities.Employee", b =>
@@ -177,7 +177,7 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("EMPLOYEES");
                 });
 
             modelBuilder.Entity("BlackCats_Domain.Entities.User", b =>
@@ -233,19 +233,19 @@ namespace BlackCats_Persistance.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("USERS");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5dadbeda-18ed-4c39-acd8-90cf7206962b"),
+                            Id = new Guid("9fb4e56e-a9c2-41f9-b68c-7ab698ac07e3"),
                             ContactNo = "7006342430",
-                            CreatedAt = new DateTime(2024, 8, 15, 0, 46, 8, 577, DateTimeKind.Local).AddTicks(8483),
+                            CreatedAt = new DateTime(2024, 9, 14, 2, 42, 22, 695, DateTimeKind.Local).AddTicks(1331),
                             Email = "admin@gmail.com",
                             IsDeleted = false,
                             Name = "admin",
-                            PasswordHash = new byte[] { 36, 50, 97, 36, 49, 49, 36, 111, 47, 85, 46, 98, 113, 115, 83, 46, 109, 76, 46, 68, 80, 78, 98, 88, 77, 103, 52, 86, 101, 80, 82, 115, 84, 47, 86, 47, 114, 71, 103, 112, 46, 52, 81, 98, 66, 56, 49, 51, 118, 118, 103, 70, 100, 54, 119, 109, 73, 117, 116, 75 },
-                            PasswordSalt = new byte[] { 36, 50, 97, 36, 49, 49, 36, 111, 47, 85, 46, 98, 113, 115, 83, 46, 109, 76, 46, 68, 80, 78, 98, 88, 77, 103, 52, 86, 101 },
+                            PasswordHash = new byte[] { 36, 50, 97, 36, 49, 49, 36, 57, 65, 77, 52, 101, 103, 70, 56, 111, 82, 90, 56, 73, 80, 100, 97, 57, 107, 49, 69, 66, 79, 117, 49, 77, 111, 86, 73, 121, 116, 56, 100, 82, 110, 120, 98, 118, 76, 65, 109, 46, 51, 85, 102, 118, 70, 100, 108, 70, 49, 68, 102, 117 },
+                            PasswordSalt = new byte[] { 36, 50, 97, 36, 49, 49, 36, 57, 65, 77, 52, 101, 103, 70, 56, 111, 82, 90, 56, 73, 80, 100, 97, 57, 107, 49, 69, 66, 79 },
                             UserName = "admin",
                             UserRole = 1,
                             UserStatus = 1
@@ -286,7 +286,7 @@ namespace BlackCats_Persistance.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Wages");
+                    b.ToTable("WAGES");
                 });
 
             modelBuilder.Entity("BlackCats_Domain.Entities.Client", b =>

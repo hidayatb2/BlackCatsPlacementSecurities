@@ -6,25 +6,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlackCats_Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class NewEntityAdded : Migration
+    public partial class initialMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Users",
-                keyColumn: "Id",
-                keyValue: new Guid("a233a5ed-8fcc-4a90-88e2-e5d6d7d39f2d"));
-
-            migrationBuilder.AddColumn<bool>(
-                name: "IsDeleted",
-                table: "Users",
-                type: "tinyint(1)",
-                nullable: false,
-                defaultValue: false);
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "AppFiles",
+                name: "APPFILES",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -37,12 +28,41 @@ namespace BlackCats_Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppFiles", x => x.Id);
+                    table.PrimaryKey("PK_APPFILES", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: "USERS",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    UserName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ContactNo = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PasswordHash = table.Column<byte[]>(type: "longblob", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "longblob", nullable: false),
+                    ResetCode = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserRole = table.Column<int>(type: "int", nullable: false),
+                    UserStatus = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_USERS", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "CLIENTS",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -63,24 +83,24 @@ namespace BlackCats_Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.PrimaryKey("PK_CLIENTS", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Clients_AppFiles_AgreementDocumentId",
+                        name: "FK_CLIENTS_APPFILES_AgreementDocumentId",
                         column: x => x.AgreementDocumentId,
-                        principalTable: "AppFiles",
+                        principalTable: "APPFILES",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Clients_Users_Id",
-                        column: x => x.Id,
-                        principalTable: "Users",
+                        name: "FK_CLIENTS_USERS_UserId",
+                        column: x => x.UserId,
+                        principalTable: "USERS",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Contracts",
+                name: "CONTRACTS",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -92,18 +112,18 @@ namespace BlackCats_Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contracts", x => x.Id);
+                    table.PrimaryKey("PK_CONTRACTS", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Contracts_Clients_Id",
-                        column: x => x.Id,
-                        principalTable: "Clients",
+                        name: "FK_CONTRACTS_CLIENTS_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "CLIENTS",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "EMPLOYEES",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -125,18 +145,18 @@ namespace BlackCats_Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_EMPLOYEES", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_Clients_Id",
-                        column: x => x.Id,
-                        principalTable: "Clients",
+                        name: "FK_EMPLOYEES_CLIENTS_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "CLIENTS",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Wages",
+                name: "WAGES",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -151,58 +171,73 @@ namespace BlackCats_Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Wages", x => x.Id);
+                    table.PrimaryKey("PK_WAGES", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Wages_Employees_Id",
-                        column: x => x.Id,
-                        principalTable: "Employees",
+                        name: "FK_WAGES_EMPLOYEES_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "EMPLOYEES",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "ContactNo", "CreatedAt", "CreatedBy", "Email", "IsDeleted", "Name", "PasswordHash", "PasswordSalt", "RefreshToken", "ResetCode", "TokenExpires", "UserName", "UserRole", "UserStatus" },
-                values: new object[] { new Guid("9d971057-4dfa-41b6-990b-d820ef228dbe"), "7006342430", new DateTime(2024, 7, 28, 22, 29, 35, 568, DateTimeKind.Local).AddTicks(6043), null, "admin@gmail.com", false, "admin", new byte[] { 112, 161, 95, 48, 224, 58, 74, 117, 43, 145, 33, 18, 212, 78, 220, 184, 89, 179, 170, 94, 1, 200, 191, 226, 126, 53, 79, 207, 196, 188, 21, 48 }, new byte[] { 222, 178, 181, 253, 21, 249, 171, 208, 241, 88, 219, 181, 135, 255, 129, 254, 71, 227, 248, 9, 221, 91, 11, 232, 121, 145, 64, 243, 82, 115, 245, 212, 106, 227, 247, 78, 103, 59, 80, 236, 244, 113, 232, 203, 60, 107, 161, 123, 73, 189, 136, 62, 228, 5, 237, 135, 93, 241, 138, 113, 174, 31, 6, 114 }, "", null, null, "admin", 1, 1 });
+                table: "USERS",
+                columns: new[] { "Id", "ContactNo", "CreatedAt", "CreatedBy", "Email", "IsDeleted", "Name", "PasswordHash", "PasswordSalt", "ResetCode", "UserName", "UserRole", "UserStatus" },
+                values: new object[] { new Guid("9fb4e56e-a9c2-41f9-b68c-7ab698ac07e3"), "7006342430", new DateTime(2024, 9, 14, 2, 42, 22, 695, DateTimeKind.Local).AddTicks(1331), null, "admin@gmail.com", false, "admin", new byte[] { 36, 50, 97, 36, 49, 49, 36, 57, 65, 77, 52, 101, 103, 70, 56, 111, 82, 90, 56, 73, 80, 100, 97, 57, 107, 49, 69, 66, 79, 117, 49, 77, 111, 86, 73, 121, 116, 56, 100, 82, 110, 120, 98, 118, 76, 65, 109, 46, 51, 85, 102, 118, 70, 100, 108, 70, 49, 68, 102, 117 }, new byte[] { 36, 50, 97, 36, 49, 49, 36, 57, 65, 77, 52, 101, 103, 70, 56, 111, 82, 90, 56, 73, 80, 100, 97, 57, 107, 49, 69, 66, 79 }, null, "admin", 1, 1 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clients_AgreementDocumentId",
-                table: "Clients",
+                name: "IX_CLIENTS_AgreementDocumentId",
+                table: "CLIENTS",
                 column: "AgreementDocumentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CLIENTS_UserId",
+                table: "CLIENTS",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CONTRACTS_ClientId",
+                table: "CONTRACTS",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EMPLOYEES_ClientId",
+                table: "EMPLOYEES",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_USERS_Email",
+                table: "USERS",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WAGES_EmployeeId",
+                table: "WAGES",
+                column: "EmployeeId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Contracts");
+                name: "CONTRACTS");
 
             migrationBuilder.DropTable(
-                name: "Wages");
+                name: "WAGES");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "EMPLOYEES");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "CLIENTS");
 
             migrationBuilder.DropTable(
-                name: "AppFiles");
+                name: "APPFILES");
 
-            migrationBuilder.DeleteData(
-                table: "Users",
-                keyColumn: "Id",
-                keyValue: new Guid("9d971057-4dfa-41b6-990b-d820ef228dbe"));
-
-            migrationBuilder.DropColumn(
-                name: "IsDeleted",
-                table: "Users");
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "ContactNo", "CreatedAt", "CreatedBy", "Email", "Name", "PasswordHash", "PasswordSalt", "RefreshToken", "ResetCode", "TokenExpires", "UserName", "UserRole", "UserStatus" },
-                values: new object[] { new Guid("a233a5ed-8fcc-4a90-88e2-e5d6d7d39f2d"), "7006342430", new DateTime(2024, 7, 18, 23, 53, 27, 50, DateTimeKind.Local).AddTicks(3131), null, "admin@gmail.com", "admin", new byte[] { 75, 140, 20, 182, 34, 202, 63, 225, 126, 89, 2, 253, 27, 100, 25, 86, 98, 87, 42, 97, 228, 37, 76, 76, 144, 109, 169, 208, 127, 5, 220, 226 }, new byte[] { 46, 215, 238, 168, 129, 32, 169, 151, 112, 113, 93, 75, 111, 47, 52, 55, 136, 209, 238, 67, 217, 0, 48, 35, 158, 228, 204, 227, 225, 128, 233, 139, 201, 240, 250, 201, 174, 193, 176, 242, 200, 102, 234, 188, 162, 215, 120, 148, 255, 157, 70, 115, 26, 192, 60, 38, 96, 90, 64, 12, 24, 191, 7, 162 }, "", null, null, "admin", 1, 1 });
+            migrationBuilder.DropTable(
+                name: "USERS");
         }
     }
 }
