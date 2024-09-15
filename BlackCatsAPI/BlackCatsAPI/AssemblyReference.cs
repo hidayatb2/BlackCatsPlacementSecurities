@@ -15,7 +15,7 @@ namespace BlackCatsAPI
             {
                 opt.AddPolicy("BCPSWebClientPolicy", options =>
                 {
-                    options.WithOrigins("http://localhost:4200","https://blackcatssecurities.netlify.app", "http://ec2-13-56-18-64.us-west-1.compute.amazonaws.com")
+                    options.AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
                     //.AllowCredentials();
@@ -31,9 +31,9 @@ namespace BlackCatsAPI
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidateIssuer = true,
+                    ValidateIssuer = false,
                     ValidIssuer = configuration["JWT:Issuer"],
-                    ValidateAudience = true,
+                    ValidateAudience = false,
                     ValidAudience = configuration["JWT:Bearer"],
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("JWT:Key"))
 

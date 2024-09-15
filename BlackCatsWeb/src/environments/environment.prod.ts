@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    baseURL: 'https://9380-66096.el-alt.com/api/',
-    domainName: 'https://blackcatssecurities.netlify.app/#/'
+    baseURL: 'http://54.153.4.158/api/',
+    domainName: 'http://54.153.4.158/'
   };
   

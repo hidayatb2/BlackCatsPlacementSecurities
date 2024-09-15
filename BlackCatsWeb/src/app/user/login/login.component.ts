@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   verifyLogin() {
     this.accountService.verifyLogin(this.loginForm).subscribe((res: any) => {
-      let data: any = JSON.stringify(res.result);
+      let data = JSON.stringify(res.result);
+      console.log(res.result);
       if (res) {
         localStorage['user'] = data;
         localStorage['BCPS_Token']=data.token;
