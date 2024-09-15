@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
       console.log(res.result);
       if (res) {
         localStorage['user'] = data;
+        localStorage['BCPS_Token']=data.token;
       }
     });
   }
