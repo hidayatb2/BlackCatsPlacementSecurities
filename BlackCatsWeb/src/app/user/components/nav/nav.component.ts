@@ -5,6 +5,7 @@ import {
 
 } from '../../fakeData';
 
+
 @Component({
   selector: 'bcss-nav',
   templateUrl: './nav.component.html',
@@ -12,6 +13,7 @@ import {
 })
 export class NavComponent {
   About: any = [];
+  constructor() {}
 
 
   ngOnInit(){

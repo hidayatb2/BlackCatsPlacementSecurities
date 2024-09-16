@@ -9,7 +9,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from '../Interceptors/AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -27,5 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   exports: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
 })
 export class UserModule {}
