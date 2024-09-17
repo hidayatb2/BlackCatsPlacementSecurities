@@ -5,13 +5,15 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from "./sidebar/sidebar.component";
+import { UserRolePipe } from '../Pipes/enum.pipe';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    UserRolePipe,
   ],
   imports: [
     CommonModule,

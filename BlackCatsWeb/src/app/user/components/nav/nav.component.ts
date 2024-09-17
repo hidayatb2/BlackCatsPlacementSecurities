@@ -4,6 +4,7 @@ import {
   aboutUsData,
 
 } from '../../fakeData';
+import { AccountService } from '../../../Services/account.services';
 
 
 @Component({
@@ -13,7 +14,7 @@ import {
 })
 export class NavComponent {
   About: any = [];
-  constructor() {}
+  constructor(public accountService: AccountService) {}
 
 
   ngOnInit(){
@@ -22,6 +23,5 @@ export class NavComponent {
 
   getAboutUsData() {
     this.About = aboutUsData;
-    console.log(this.About);
   }
 }

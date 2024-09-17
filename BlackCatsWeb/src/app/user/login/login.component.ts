@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AccountService } from '../service/account.services';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToasterService } from '../../Services/toaster-service';
+import { AccountService } from '../../Services/account.services';
 @Component({
   selector: 'bcss-login',
   templateUrl: './login.component.html',
@@ -9,15 +10,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    email: new FormControl('admin@gmail.com'),
-    password: new FormControl('admin'),
+    email: new FormControl(),
+    password: new FormControl(),
   });
 
   constructor(
     private accountService: AccountService,
     private route: ActivatedRoute,
     private router: Router,
-    //private toastrService: ToastrService
+    private toasterService: ToasterService
   ) {}
 
   ngOnInit(): void {}
@@ -25,20 +26,20 @@ export class LoginComponent implements OnInit {
   verifyLogin() {
     this.accountService.verifyLogin(this.loginForm).subscribe({
       next: () => {
-        //this.toastrService.success("You're logged in successfully");
+        this.toasterService.fireSuccessSwal("Logged In Successfully")
         const redirectUrl =
           this.route.snapshot.queryParamMap.get('redirectUrl');
         if (redirectUrl !== null) {
           this.router.navigateByUrl(redirectUrl);
         } else {
-          this.router.navigateByUrl('/admin/home');
+          this.router.navigateByUrl('/admin/dashboard');
         }
       },
       error: (error) => {
         if (error.status == 401) {
-          //this.toastrService.warning('Invalid username or password');
+          this.toasterService.fireErrorSwal("Invalid Username or Password");
         } else {
-          //this.toastrService.error('There was some error on login');
+          this.toasterService.fireErrorSwal("Something went wrong");
         }
       },
     });

@@ -1,8 +1,12 @@
+import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
-export class ToasterServie {
+@Injectable({
+  providedIn: 'root',
+})
+export class ToasterService {
   fireSuccessSwal(message: string) {
     Swal.fire({
-      position: 'top-end',
+      position: 'bottom-right',
       icon: 'success',
       title: message,
       showConfirmButton: false,
@@ -12,11 +16,13 @@ export class ToasterServie {
 
   fireErrorSwal(message: string) {
     Swal.fire({
-      position: 'top-end',
+      position: 'bottom-right',
       icon: 'error',
       title: message,
       showConfirmButton: false,
       timer: 2000,
+      width: 50,
+      heightAuto: true
     });
   }
 
