@@ -5,8 +5,8 @@ import {
   AchievmentImagesData,
   ServicesData,
 } from '../fakeData';
+import { Service } from '../Interface/interface';
 
-import { About , Service } from '../Interface/interface';
 
 @Component({
   selector: 'bcss-home',
@@ -32,7 +32,6 @@ export class HomeComponent implements AfterViewInit {
 
   getCoursalData() {
     this.Coursal = CoursalData;
-    console.log(this.Coursal);
   }
 
   getAchievmentImagesData() {
@@ -40,7 +39,6 @@ export class HomeComponent implements AfterViewInit {
   }
   getServiceData() {
     this.Services = ServicesData;
-    // console.log(this.Services);
   }
 
  

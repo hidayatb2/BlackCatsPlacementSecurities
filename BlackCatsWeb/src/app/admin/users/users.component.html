@@ -1,0 +1,31 @@
+<div class="flex items-center justify-end">
+  <button class="btn btn-outline btn-primary">Add User</button>
+</div>
+<div class="overflow-x-auto">
+  <table class="table table-lg table-pin-rows table-pin-cols">
+    <thead>
+      <tr>
+        <td>S.No</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Phone No.</td>
+        <td>Role</td>
+        <td>Created On</td>
+        <td>Action</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track $index) {
+      <tr class="hover:bg-gray-800">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.contactNo }}</td>
+        <td>{{ user.userRole }}</td>
+        <td>{{ user.createdAt }}</td>
+        <td></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

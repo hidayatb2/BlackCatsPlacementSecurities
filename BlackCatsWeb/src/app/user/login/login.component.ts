@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AccountService } from '../service/services';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToasterService } from '../../Services/toaster-service';
+import { AccountService } from '../../Services/account.services';
 @Component({
   selector: 'bcss-login',
   templateUrl: './login.component.html',
@@ -8,21 +10,38 @@ import { AccountService } from '../service/services';
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    email: new FormControl('admin@gmail.com'),
-    password: new FormControl('admin'),
+    email: new FormControl(),
+    password: new FormControl(),
   });
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toasterService: ToasterService
+  ) {}
 
   ngOnInit(): void {}
 
   verifyLogin() {
-    this.accountService.verifyLogin(this.loginForm).subscribe((res: any) => {
-      let data = JSON.stringify(res.result);
-      console.log(res.result);
-      if (res) {
-        localStorage['user'] = data;
-      }
+    this.accountService.verifyLogin(this.loginForm).subscribe({
+      next: () => {
+        this.toasterService.fireSuccessSwal("Logged In Successfully")
+        const redirectUrl =
+          this.route.snapshot.queryParamMap.get('redirectUrl');
+        if (redirectUrl !== null) {
+          this.router.navigateByUrl(redirectUrl);
+        } else {
+          this.router.navigateByUrl('/admin/dashboard');
+        }
+      },
+      error: (error) => {
+        if (error.status == 401) {
+          this.toasterService.fireErrorSwal("Invalid Username or Password");
+        } else {
+          this.toasterService.fireErrorSwal("Something went wrong");
+        }
+      },
     });
   }
 }

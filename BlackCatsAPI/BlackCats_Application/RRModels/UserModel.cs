@@ -49,6 +49,7 @@ public class UserResponse
 
 
     public UserStatus UserStatus { get; set; }
+    public DateTime CreatedAt { get; set; }
 }
 
 
@@ -70,7 +71,7 @@ public class UserUpdateRequest
 }
 
 
-public class UserUpdateResponse:UserUpdateRequest
+public class UserUpdateResponse : UserUpdateRequest
 {
-    
+
 }

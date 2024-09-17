@@ -1,0 +1,97 @@
+<link
+  href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+  rel="stylesheet"
+/>
+<div class="w-64">
+  <div class="sidebar container-fluid">
+    <div class="logo-details flex flex-col mt-3">
+      <img src="https://flowbite.com/docs/images/logo.svg" alt=""  srcset="">
+      <span class="font-extrabold">Blackcats Security Services</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a [routerLink]="['/admin/dashboard']" routerLinkActive="active">
+          <i class="bx bx-grid-alt"></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+      </li>
+  
+      <li>
+        <div class="iocn-link">
+          <a [routerLink]="['/admin/users']" routerLinkActive="active">
+            <i class="bx bx-book-alt"></i>
+            <span class="link_name">Users</span>
+          </a>
+        </div>
+  
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-pie-chart-alt-2"></i>
+          <span class="link_name">Analytics</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Analytics</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-line-chart"></i>
+          <span class="link_name">Chart</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Chart</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class="bx bx-plug"></i>
+            <span class="link_name">Plugins</span>
+          </a>
+        </div>
+  
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-compass"></i>
+          <span class="link_name">Explore</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Explore</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-history"></i>
+          <span class="link_name">History</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">History</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-cog"></i>
+          <span class="link_name">Setting</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Setting</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profileImg">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name">{{(currentUser | async).name.toUpperCase()}}</div>
+            <div class="job">{{(currentUser | async).userRole | userRole}}</div>
+          </div>
+          <i class="bx bx-log-out" (click)="logout()"></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+</div>

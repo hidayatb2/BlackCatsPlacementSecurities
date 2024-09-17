@@ -4,6 +4,8 @@ import {
   aboutUsData,
 
 } from '../../fakeData';
+import { AccountService } from '../../../Services/account.services';
+
 
 @Component({
   selector: 'bcss-nav',
@@ -12,6 +14,7 @@ import {
 })
 export class NavComponent {
   About: any = [];
+  constructor(public accountService: AccountService) {}
 
 
   ngOnInit(){
@@ -20,6 +23,5 @@ export class NavComponent {
 
   getAboutUsData() {
     this.About = aboutUsData;
-    console.log(this.About);
   }
 }

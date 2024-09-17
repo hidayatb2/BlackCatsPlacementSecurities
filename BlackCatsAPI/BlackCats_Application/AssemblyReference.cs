@@ -14,7 +14,6 @@ namespace BlackCats_Application
             configuration.GetSection("JWT");
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
 
             return services;
