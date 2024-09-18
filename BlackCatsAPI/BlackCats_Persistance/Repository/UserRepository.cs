@@ -18,10 +18,7 @@ namespace BlackCats_Persistance.Repository
         {
 
             string query = $@"SELECT * FROM USERS WHERE ISDELETED = FALSE;";
-
             return await QueryAsync<User>(query);
-
-
         }
 
         public async Task<User> GetUserById(Guid id)

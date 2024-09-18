@@ -31,9 +31,10 @@ namespace BlackCatsAPI
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidateIssuer = false,
+                    ValidateIssuer = true,
                     ValidIssuer = configuration["JWT:Issuer"],
-                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    ValidateAudience = true,
                     ValidAudience = configuration["JWT:Bearer"],
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("JWT:Key"))
 
