@@ -32,13 +32,14 @@ namespace BlackCatsAPI
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = false,
+                    ValidateIssuer = true,
                     ValidIssuer = configuration["JWT:Issuer"],
                     ValidateIssuerSigningKey = true,
                     ValidateAudience = false,
                     ValidateLifetime= true,
                     //ValidAudience = configuration["JWT:Bearer"],
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JWT:Key"]!))
+
 
                 };
             });

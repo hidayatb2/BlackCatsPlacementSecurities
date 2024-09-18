@@ -17,9 +17,9 @@ export class UserComponent implements OnInit {
    }
 
    setCurrentUser(){
-    if (localStorage.getItem('user') != null){
-      const user: LoginResponse = JSON.parse(atob(localStorage.getItem('user')!))
-      this.accountService.setCurrentUser(user);
-    }
+    // if (localStorage.getItem('user') != null){
+    //   const user: LoginResponse = JSON.parse(atob(localStorage.getItem('user')!))
+    //   this.accountService.setCurrentUser(user);
+    // }
    }
 }

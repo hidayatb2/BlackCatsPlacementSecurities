@@ -16,7 +16,6 @@ export class AccountService {
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
-    this.getCurrentUser();
   }
 
   verifyLogin(req: any) {
@@ -54,9 +53,9 @@ export class AccountService {
     }
   }
 
-  setCurrentUser(user: LoginResponse) {
-    this.currentUserSource.next(user);
-  }
+  // setCurrentUser(user: LoginResponse) {
+  //   this.currentUserSource.next(user);
+  // }
 
   getCurrentUser() {
     if (localStorage.getItem('user') == null) return null;
