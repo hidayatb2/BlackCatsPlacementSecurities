@@ -25,18 +25,21 @@ namespace BlackCatsAPI
 
             services.AddAuthentication(x =>
             {
+                x.DefaultScheme= JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidIssuer = configuration["JWT:Issuer"],
                     ValidateIssuerSigningKey = true,
-                    ValidateAudience = true,
-                    ValidAudience = configuration["JWT:Bearer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("JWT:Key"))
+                    ValidateAudience = false,
+                    ValidateLifetime= true,
+                    //ValidAudience = configuration["JWT:Bearer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JWT:Key"]!))
+
 
                 };
             });
