@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from '../../Services/toaster-service';
-import { AccountService } from '../../Services/account.services';
+import { AccountService } from '../../Services/account.service';
 @Component({
   selector: 'bcss-login',
   templateUrl: './login.component.html',

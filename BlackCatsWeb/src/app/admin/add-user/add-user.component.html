@@ -1,0 +1,26 @@
+<button class="btn btn-outline btn-primary" (click)="openModal()">Add User</button>
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box max-w-3xl">
+    <h3 class="text-lg font-bold">Add User</h3>
+    <div class="modal-action m-2">
+      <form [formgroup]="addUserForm" method="dialog">
+        <input  type="text" placeholder="Name" class="input input-bordered  w-1/2 max-w-xs" />
+        <input type="text" placeholder="Email" class="input input-bordered  w-1/2 max-w-xs" />
+        <input type="text" placeholder="Contact No" class="input input-bordered  w-1/2 max-w-xs" />
+        <details class="dropdown w-1/2">
+            <summary class="btn w-full max-w-xs">Roles</summary>
+            <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+              <li value="1"><a>Admin</a></li>
+              <li value="2"><a>Manager</a></li>
+              <li value="3"><a>Staff</a></li>
+            </ul>
+          </details>
+          <div class="flex m-4 justify-center">
+        <button class="btn ">Submit</button>
+        <button class="btn">Close</button>
+    </div>
+      </form>
+    </div>
+  </div>
+</dialog>
+

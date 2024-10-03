@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../Services/account.services';
+import { AccountService } from '../../Services/account.service';
 
 @Component({
   selector: 'bcss-sidebar',
@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentUser = this.accountService.currentUser$;
+    this.currentUser = this.accountService.getCurrentUser();
   }
 
   logout() {

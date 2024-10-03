@@ -22,7 +22,7 @@ export class ToasterService {
       showConfirmButton: false,
       timer: 2000,
       width: 50,
-      heightAuto: true
+      heightAuto: true,
     });
   }
 

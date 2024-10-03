@@ -85,8 +85,8 @@
             <!--<img src="image/profile.jpg" alt="profileImg">-->
           </div>
           <div class="name-job">
-            <div class="profile_name">{{(currentUser | async).name.toUpperCase()}}</div>
-            <div class="job">{{(currentUser | async).userRole | userRole}}</div>
+            <div class="profile_name">{{(currentUser).name.toUpperCase()}}</div>
+            <div class="job">{{(currentUser).userRole | userRole}}</div>
           </div>
           <i class="bx bx-log-out" (click)="logout()"></i>
         </div>

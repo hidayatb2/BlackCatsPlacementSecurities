@@ -42,7 +42,7 @@ export class AccountService {
     return null;
   }
 
-  isUserAuthenticated(role: UserRole) {
+  isUserAuthenticated() {
     if (this.getToken()) {
       return true;
     } else {

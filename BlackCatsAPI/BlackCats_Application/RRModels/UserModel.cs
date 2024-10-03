@@ -5,7 +5,6 @@ namespace BlackCats_Application.RRModels;
 
 public class UserRequest
 {
-    [Required]
     public string UserName { get; set; } = string.Empty;
 
 

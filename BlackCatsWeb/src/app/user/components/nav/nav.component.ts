@@ -4,7 +4,7 @@ import {
   aboutUsData,
 
 } from '../../fakeData';
-import { AccountService } from '../../../Services/account.services';
+import { AccountService } from '../../../Services/account.service';
 
 
 @Component({
