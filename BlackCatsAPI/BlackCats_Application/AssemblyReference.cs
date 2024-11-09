@@ -9,12 +9,14 @@ namespace BlackCats_Application
     public static class AssemblyReference
     {
 
-        public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration configuration,string webRootPath)
         {
             configuration.GetSection("JWT");
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IFileService,FileService>();
+            services.AddScoped<IClientService, ClientService>();
 
             return services;
         }

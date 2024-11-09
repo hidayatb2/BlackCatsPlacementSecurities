@@ -25,4 +25,8 @@
     <ProjectReference Include="..\BlackCats_Persistance\BlackCats_Persistance.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

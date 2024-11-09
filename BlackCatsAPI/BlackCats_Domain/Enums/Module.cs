@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BlackCats_Domain.Enums;
 
-namespace BlackCats_Domain.Enums
+public enum EntityModule
 {
-    public enum EntityModule
-    {
-        User=1,
-        Client=2,
-        Employee=3
+    User=1,
+    Client=2,
+    Employee=3,
+    Slider=4
 
-    }
+}
+ public enum FileType
+{
+    Document=1,
+    Image=2,
 }

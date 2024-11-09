@@ -1,23 +1,30 @@
 ﻿using AutoMapper;
 using BlackCats_Application.RRModels;
 using BlackCats_Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BlackCats_Application.MappingProfile
+namespace BlackCats_Application.MappingProfile;
+
+public class UserProfile : Profile
 {
-    public class UserProfile : Profile
+    public UserProfile()
     {
-        public UserProfile()
-        {
-            CreateMap<User, LoginResponse>();
-            CreateMap<User,UserResponse>();
-            CreateMap<UserRequest, User>();
-            CreateMap<User,UserUpdateResponse>();
-        }
+        CreateMap<User, LoginResponse>();
+        CreateMap<User,UserResponse>();
+        CreateMap<UserRequest, User>();
+        CreateMap<User,UserUpdateResponse>();
+        
+    }
 
+}
+
+public class ClientProfile : Profile
+{
+    public ClientProfile() 
+    {
+        CreateMap<ClientRequest, Client>();
+        CreateMap<Client, ClientResponse>();
+        CreateMap<ClientRequest, ClientResponse>();
+    
     }
 }
+

@@ -21,8 +21,9 @@ namespace BlackCats_Persistance
                 .EnableDetailedErrors();
             });
             services.AddScoped<IAccountRepository, AccountRepository>();
-
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
             return services;
         }
 
