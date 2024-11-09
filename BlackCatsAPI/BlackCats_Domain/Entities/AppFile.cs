@@ -11,5 +11,7 @@ namespace BlackCats_Domain.Entities
         public EntityModule ModuleType { get; set; }
 
         public Guid ModuleId { get; set; }
+
+        public FileType FileType { get; set; }
     }
 }

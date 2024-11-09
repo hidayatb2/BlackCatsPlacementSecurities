@@ -48,6 +48,7 @@ public class UserResponse
 
 
     public UserStatus UserStatus { get; set; }
+
     public DateTime CreatedAt { get; set; }
 }
 

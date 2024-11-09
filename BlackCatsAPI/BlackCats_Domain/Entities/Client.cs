@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlackCats_Domain.Entities
 {
@@ -25,14 +19,15 @@ namespace BlackCats_Domain.Entities
 
         public bool IsDeleted { get; set; }
 
-        public AppFile AgreementDocument { get; set; } = null!;
-
         public Guid UserId { get; set; }
 
 
         #region NavigationProperties
         [ForeignKey(nameof(UserId))]
         public User User { get; set; } =null!;
+
+        //[ForeignKey(nameof(Id))]
+        //public AppFile AppFile { get; set; } = null!;
 
         #endregion
 

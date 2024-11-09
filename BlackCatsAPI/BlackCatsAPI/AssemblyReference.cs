@@ -10,6 +10,7 @@ namespace BlackCatsAPI
         {
             services.AddControllers();
             services.AddEndpointsApiExplorer();
+            services.AddHttpContextAccessor();
             services.AddSwaggerGen();
             services.AddCors(opt =>
             {

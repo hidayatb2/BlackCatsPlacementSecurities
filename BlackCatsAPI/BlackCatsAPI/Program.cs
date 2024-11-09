@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services
                 .AddApiService(builder.Configuration)
-                .AddApplicationService(builder.Configuration)
-                .AddInfraStructureServices(builder.Configuration)
+                .AddApplicationService(builder.Configuration,builder.Environment.WebRootPath)
+                .AddInfraStructureServices(builder.Configuration, builder.Environment.WebRootPath)
                 .AddPersistanceService(builder.Configuration);
 
 var app = builder.Build();
@@ -26,6 +26,7 @@ app.UseHttpsRedirection();
 app.UseCors("BCPSWebClientPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 
 app.MapControllers();
 
