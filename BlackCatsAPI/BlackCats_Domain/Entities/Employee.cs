@@ -26,7 +26,7 @@ namespace BlackCats_Domain.Entities
 
         public bool IsUniformFeePaid { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid ClientId { get; set; }
 
