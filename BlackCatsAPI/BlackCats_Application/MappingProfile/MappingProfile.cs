@@ -9,22 +9,34 @@ public class UserProfile : Profile
     public UserProfile()
     {
         CreateMap<User, LoginResponse>();
-        CreateMap<User,UserResponse>();
+        CreateMap<User, UserResponse>();
         CreateMap<UserRequest, User>();
-        CreateMap<User,UserUpdateResponse>();
-        
+        CreateMap<User, UserUpdateResponse>();
+
     }
 
 }
 
 public class ClientProfile : Profile
 {
-    public ClientProfile() 
+    public ClientProfile()
     {
         CreateMap<ClientRequest, Client>();
         CreateMap<Client, ClientResponse>();
         CreateMap<ClientRequest, ClientResponse>();
-    
+
+    }
+}
+
+public class ContractProfile : Profile
+{
+    public ContractProfile()
+    {
+        CreateMap<ContractReq, Contract>();
+        CreateMap<Contract, ContractRes>();
+        CreateMap<ContractReq, ContractRes>();
+        CreateMap<ContractUpdateReq, Contract>();
+
     }
 
     public class Employees:Profile
