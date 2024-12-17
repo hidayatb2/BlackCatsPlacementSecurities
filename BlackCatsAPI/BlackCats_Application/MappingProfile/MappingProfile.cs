@@ -20,4 +20,15 @@ namespace BlackCats_Application.MappingProfile
         }
 
     }
+
+    public class Employees:Profile
+    {
+        public Employees()
+        {
+            CreateMap<EmployeeRequest, Employee>();
+            CreateMap<Employee, EmployeeResponse>();
+            CreateMap<EmployeeUpdateRequest, Employee>();
+            CreateMap<Employee,EmployeeUpdateResponse>();
+        }
+    }
 }
