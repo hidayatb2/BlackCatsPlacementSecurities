@@ -5,14 +5,13 @@ using BlackCats_Persistance.Respository;
 
 namespace BlackCats_Persistance.Repository;
 
-public class ClientRepository :BaseRepository<Client>,IClientRepository
+public class ClientRepository : BaseRepository<Client>, IClientRepository
 {
     private readonly BCPSDbContext context;
 
-    public ClientRepository(BCPSDbContext context):base(context)
+    public ClientRepository(BCPSDbContext context) : base(context)
     {
         this.context = context;
     }
 
-    
 }
