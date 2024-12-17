@@ -26,5 +26,16 @@ public class ClientProfile : Profile
         CreateMap<ClientRequest, ClientResponse>();
     
     }
+
+    public class Employees:Profile
+    {
+        public Employees()
+        {
+            CreateMap<EmployeeRequest, Employee>();
+            CreateMap<Employee, EmployeeResponse>();
+            CreateMap<EmployeeUpdateRequest, Employee>();
+            CreateMap<Employee,EmployeeUpdateResponse>();
+        }
+    }
 }
 

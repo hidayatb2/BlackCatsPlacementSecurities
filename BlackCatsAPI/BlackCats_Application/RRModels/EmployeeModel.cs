@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlackCats_Domain.Entities
+namespace BlackCats_Application.RRModels
 {
-    public class Employee : BaseEntity
+    public class EmployeeRequest
     {
-
-        public string Name { get; set; }= string.Empty;
+        public string Name { get; set; } = string.Empty;
 
         public string Address { get; set; } = string.Empty;
 
@@ -26,18 +24,21 @@ namespace BlackCats_Domain.Entities
 
         public bool IsUniformFeePaid { get; set; }
 
-        public bool IsDeleted { get; set; } = false;
-
         public Guid ClientId { get; set; }
+    }
 
-
-        #region Navigation Properties
-        [ForeignKey(nameof(ClientId))]
-        public Client Client { get; set; } = null!;
-        #endregion
+    public class EmployeeResponse:EmployeeRequest
+    {
 
     }
 
+    public class EmployeeUpdateRequest:EmployeeRequest
+    {
+        public Guid Id { get; set; }
 
+    }
+    public class EmployeeUpdateResponse:EmployeeResponse
+    {
 
+    }
 }
