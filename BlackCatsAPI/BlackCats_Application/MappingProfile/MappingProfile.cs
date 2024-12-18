@@ -39,14 +39,25 @@ public class ContractProfile : Profile
 
     }
 
-    public class Employees:Profile
+    public class Employees : Profile
     {
         public Employees()
         {
             CreateMap<EmployeeRequest, Employee>();
             CreateMap<Employee, EmployeeResponse>();
             CreateMap<EmployeeUpdateRequest, Employee>();
-            CreateMap<Employee,EmployeeUpdateResponse>();
+            CreateMap<Employee, EmployeeUpdateResponse>();
+        }
+    }
+
+    public class Wages : Profile
+    {
+        public Wages()
+        {
+            CreateMap<WagesRequest, Wages>();
+            CreateMap<Wages, WagesResponse>();
+            CreateMap<WagesUpdateRequest, Wages>();
+            CreateMap<Wages, WagesUpdateResponse>();
         }
     }
 }

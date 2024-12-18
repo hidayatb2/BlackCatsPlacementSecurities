@@ -18,6 +18,7 @@ namespace BlackCats_Application
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IContractService, ContractService>();
+            services.AddScoped<IWagesService, WagesService>();
 
             return services;
         }
