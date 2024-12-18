@@ -32,10 +32,10 @@ public class ContractProfile : Profile
 {
     public ContractProfile()
     {
-        CreateMap<ContractReq, Contract>();
-        CreateMap<Contract, ContractRes>();
-        CreateMap<ContractReq, ContractRes>();
-        CreateMap<ContractUpdateReq, Contract>();
+        CreateMap<ContractRequest, Contract>();
+        CreateMap<Contract, ContractResponse>();
+        CreateMap<ContractRequest, ContractResponse>();
+        CreateMap<ContractUpdateRequest, Contract>();
 
     }
 }

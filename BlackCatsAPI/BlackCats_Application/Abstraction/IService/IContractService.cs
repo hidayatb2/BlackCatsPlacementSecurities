@@ -12,13 +12,13 @@ namespace BlackCats_Application.Abstraction.IService
 {
     public interface IContractService
     {
-        Task<APIResponse<ContractRes>> AddContract(ContractReq model);
+        Task<APIResponse<ContractResponse>> AddContract(ContractRequest model);
 
-        Task<APIResponse<IEnumerable<ContractRes>>> GetAllContracts();
+        Task<APIResponse<IEnumerable<ContractResponse>>> GetAllContracts();
 
-        Task<APIResponse<ContractRes>> UpdateContract(ContractUpdateReq model);
+        Task<APIResponse<ContractResponse>> UpdateContract(ContractUpdateRequest model);
 
-        Task<APIResponse<ContractRes>> GetContractById(Guid id);
+        Task<APIResponse<ContractResponse>> GetContractById(Guid id);
 
         Task<APIResponse<string>> DeleteContractById(Guid id);
     }
