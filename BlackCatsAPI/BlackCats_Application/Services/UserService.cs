@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using BlackCats_Application.Abstraction.IEmailService;
 using BlackCats_Application.Abstraction.IRepository;
 using BlackCats_Application.Abstraction.IService;
+using BlackCats_Application.Abstraction.TempleteRendrer;
 using BlackCats_Application.RRModels;
 using BlackCats_Application.Shared;
 using BlackCats_Application.Utilities;
@@ -13,29 +15,44 @@ namespace BlackCats_Application.Services
     {
         private readonly IUserRepository repository;
         private readonly IMapper mapper;
+        private readonly IEmailService emailService;
+        private readonly IEmailTemplateRenderer templateRenderer;
 
-        public UserService(IUserRepository repository, IMapper mapper)
+        public UserService(IUserRepository repository, IMapper mapper,IEmailService emailService,IEmailTemplateRenderer templateRenderer)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.emailService = emailService;
+            this.templateRenderer = templateRenderer;
         }
         public async Task<APIResponse<UserResponse>> AddUser(UserRequest model)
         {
-            if (await repository.IsExist(user => user.UserName == model.UserName))
-                return APIResponse<UserResponse>.ErrorResponse("UserName Already Exists Please Choose Another UserName", APIStatusCodes.Conflict);
-            else if (await repository.IsExist(user => user.ContactNo == model.ContactNo))
+            if (await repository.IsExist(user => user.ContactNo == model.ContactNo))
                 return APIResponse<UserResponse>.ErrorResponse("Contact Number Already Exists Please Give Another Contact Number", APIStatusCodes.Conflict);
             else if (await repository.IsExist(user => user.Email == model.Email))
                 return APIResponse<UserResponse>.ErrorResponse("Email Already Exists Please Choose Another Email", APIStatusCodes.Conflict);
             else
             {
                 User user = mapper.Map<User>(model);
+                user.UserName = model.Email;
                 user.PasswordSalt = AppEncryption.GenerateSalt();
                 user.PasswordHash = AppEncryption.PasswordHashing(model.ContactNo, user.PasswordSalt);
                 user.UserStatus = UserStatus.Active;
                 var ReturnVal = await repository.AddAsync(user);
                 if (ReturnVal > 0)
+                {
+                      var emailSettings = new MailSettings
+                    {
+                        To = new List<string>()
+                        {
+                            user.Email
+                        },
+                        Subject=APIMessages.UserCredentials,
+                        Body = await templateRenderer.RenderTemplateAsync(APIMessages.TemplateNames.ConfirmEmailWithUsername, new { CompanyName=APIMessages.CompanyInfo.CompanyName,Name=user.Name,UserName=user.Email,Password=user.ContactNo,Link=""})
+                    };
+                   var emailResponse= await emailService.SendEmailAsync(emailSettings);
                     return APIResponse<UserResponse>.SuccessResponse(mapper.Map<UserResponse>(user), APIStatusCodes.Created);
+                }
                 else return APIResponse<UserResponse>.ErrorResponse("There is Some Issue PLease Try After Sometime", APIStatusCodes.InternalServerError);
 
             }

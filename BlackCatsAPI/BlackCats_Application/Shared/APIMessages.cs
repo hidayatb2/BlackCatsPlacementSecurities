@@ -6,7 +6,7 @@ public static class APIMessages
     public static readonly string TechnicalError = "There is some technical error, please try again later.";
     
 
-    public static readonly string ProjectName = "Kashmir Services";
+    public static readonly string ProjectName = "Black Cats Security Placement";
 
     public static readonly string NotFound = "Not found.";
 
@@ -41,6 +41,11 @@ public static class APIMessages
     public static readonly string ConfirmEmailSubject = "Verify Your Email And Complete Registration";
 
     public static readonly string PasswordResetEmailSubject = "Reset Your Password";
+
+    public static readonly string UserCredentials = "User Credentials of Black Cats Security Placement";
+
+
+
 
     public static class Addresses
     {
@@ -97,6 +102,11 @@ public static class APIMessages
         public static readonly string EmailStatisfactoryCode = "EmailStatisfactoryCode.cshtml";
     }
 
+    public static class CompanyInfo
+    {
+        public static readonly string CompanyName = "Black Cats Security Placement";
+
+    }
 
 }
 
@@ -105,3 +115,4 @@ public static class AppRoutes
     public static readonly string ClientVerifyEmailRoute = "verifyemail";
     public static readonly string ClientResetPasswordRoute = "resetpassword";
 }
+
