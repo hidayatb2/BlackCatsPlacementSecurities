@@ -27,7 +27,7 @@ namespace BlackCatsAPI.Controllers
             return this.ApiResult(await service.GetAllUsers());
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<IResult> AddUsers(UserRequest model) => this.ApiResult(await service.AddUser(model));
 
