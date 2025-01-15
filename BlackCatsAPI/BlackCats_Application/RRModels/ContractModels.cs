@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace BlackCats_Application.RRModels
 {
-    public class ContractRes
+    public class ContractResponse
     {
         public DateOnly From { get; set; }
 
         public DateOnly To { get; set; }
     }
-    public class ContractReq : ContractRes
+    public class ContractRequest : ContractResponse
     {
         public Guid ClientId { get; set; }
     }
 
-    public class ContractUpdateReq : ContractRes
+    public class ContractUpdateRequest : ContractResponse
     {
         public Guid Id { get; set; }
 

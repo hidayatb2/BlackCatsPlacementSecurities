@@ -18,18 +18,18 @@ namespace BlackCats_Application.Services
             this.mapper = mapper;
         }
 
-        public async Task<APIResponse<ContractRes>> AddContract(ContractReq model)
+        public async Task<APIResponse<ContractResponse>> AddContract(ContractRequest model)
         {
             Contract Contract = mapper.Map<Contract>(model);
             var retVal = await repository.AddAsync(Contract);
 
             if (retVal > 0)
             {
-                return APIResponse<ContractRes>.SuccessResponse(mapper.Map<ContractRes>(model));
+                return APIResponse<ContractResponse>.SuccessResponse(mapper.Map<ContractResponse>(model));
             }
             else
             {
-                return APIResponse<ContractRes>.ErrorResponse("There is Some Error please Try After Sometime", APIStatusCodes.InternalServerError);
+                return APIResponse<ContractResponse>.ErrorResponse("There is Some Error please Try After Sometime", APIStatusCodes.InternalServerError);
             }
         }
 
@@ -38,31 +38,31 @@ namespace BlackCats_Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<APIResponse<IEnumerable<ContractRes>>> GetAllContracts()
+        public async Task<APIResponse<IEnumerable<ContractResponse>>> GetAllContracts()
         {
             var res = await repository.GetAllByAsync();
 
             if (res is not null)
             {
-                return APIResponse<IEnumerable<ContractRes>>.SuccessResponse(res.Select(Contract => mapper.Map<ContractRes>(Contract)));
+                return APIResponse<IEnumerable<ContractResponse>>.SuccessResponse(res.Select(Contract => mapper.Map<ContractResponse>(Contract)));
             }
 
-            return APIResponse<IEnumerable<ContractRes>>.ErrorResponse("No Client Found", APIStatusCodes.NoContent);
+            return APIResponse<IEnumerable<ContractResponse>>.ErrorResponse("No Client Found", APIStatusCodes.NoContent);
         }
 
-        public async Task<APIResponse<ContractRes>> GetContractById(Guid id)
+        public async Task<APIResponse<ContractResponse>> GetContractById(Guid id)
         {
             var client = await repository.GetbyIdAsync(id);
 
             if (client is not null)
             {
-                return APIResponse<ContractRes>.SuccessResponse(mapper.Map<ContractRes>(client));
+                return APIResponse<ContractResponse>.SuccessResponse(mapper.Map<ContractResponse>(client));
             }
 
-            return APIResponse<ContractRes>.ErrorResponse("No Client Found By this Id", APIStatusCodes.BadRequest);
+            return APIResponse<ContractResponse>.ErrorResponse("No Client Found By this Id", APIStatusCodes.BadRequest);
         }
 
-        public async Task<APIResponse<ContractRes>> UpdateContract(ContractUpdateReq model)
+        public async Task<APIResponse<ContractResponse>> UpdateContract(ContractUpdateRequest model)
         {
             var contract = await repository.GetbyIdAsync(model.ClientId);
 
@@ -73,12 +73,12 @@ namespace BlackCats_Application.Services
                 contract.To = model.To;
 
                 var res = await repository.UpdateAsync(contract);
-                return APIResponse<ContractRes>.SuccessResponse(mapper.Map<ContractRes>(res));
+                return APIResponse<ContractResponse>.SuccessResponse(mapper.Map<ContractResponse>(res));
             }
 
             else
             {
-                return APIResponse<ContractRes>.ErrorResponse("No Client Found", APIStatusCodes.BadRequest);
+                return APIResponse<ContractResponse>.ErrorResponse("No Client Found", APIStatusCodes.BadRequest);
 
             }
         }

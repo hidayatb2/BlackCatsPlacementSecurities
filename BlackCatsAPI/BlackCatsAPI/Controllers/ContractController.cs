@@ -22,11 +22,11 @@ namespace BlackCatsAPI.Controllers
 
         [HttpPost]
 
-        public async Task<IResult> AddClient(ContractReq model) => this.ApiResult(await service.AddContract(model));
+        public async Task<IResult> AddClient(ContractRequest model) => this.ApiResult(await service.AddContract(model));
 
         [HttpPut]
 
-        public async Task<IResult> UpdateClient(ContractUpdateReq model) => this.ApiResult(await service.UpdateContract(model));
+        public async Task<IResult> UpdateClient(ContractUpdateRequest model) => this.ApiResult(await service.UpdateContract(model));
 
         [HttpGet("{Id}")]
 
