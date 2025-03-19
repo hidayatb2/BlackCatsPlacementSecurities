@@ -13,7 +13,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const currentUser = accountService.getCurrentUser();
 
   // If the user has a token, clone the request and set the Authorization header
-  if (currentUser?.token) {
+  if (currentUser!==null) {
     req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${currentUser.token}`,

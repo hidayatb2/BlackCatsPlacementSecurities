@@ -8,3 +8,8 @@ export class LoginResponse {
    User!:UserRole
    Token!:string
 }
+
+export class LoginRequest{
+   email!:string
+   password!:string
+}

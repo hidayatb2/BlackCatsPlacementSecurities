@@ -27,9 +27,9 @@ namespace BlackCats_Application.Services
         }
         public async Task<APIResponse<UserResponse>> AddUser(UserRequest model)
         {
-            if (await repository.IsExist(user => user.ContactNo == model.ContactNo))
+            if (await repository.IsExist(user => user.ContactNo == model.ContactNo && user.IsDeleted==false))
                 return APIResponse<UserResponse>.ErrorResponse("Contact Number Already Exists Please Give Another Contact Number", APIStatusCodes.Conflict);
-            else if (await repository.IsExist(user => user.Email == model.Email))
+            else if (await repository.IsExist(user => user.Email == model.Email && user.IsDeleted==false))
                 return APIResponse<UserResponse>.ErrorResponse("Email Already Exists Please Choose Another Email", APIStatusCodes.Conflict);
             else
             {

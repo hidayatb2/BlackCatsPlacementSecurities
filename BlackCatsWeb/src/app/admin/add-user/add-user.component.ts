@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserRole } from '../../Enums/user-role';
+import { UserRequest } from '../../Model/add-users';
+import { UserService } from '../../Services/user.service';
+import { ToasterService } from '../../Services/toaster-service';
 
 @Component({
   selector: 'bcss-add-user',
-  templateUrl: './add-user.component.html',
+  templateUrl:'./add-user.component.html',
   styleUrl: './add-user.component.scss',
 })
 export class AddUserComponent implements OnInit {
@@ -14,15 +17,25 @@ export class AddUserComponent implements OnInit {
     contactNo: new FormControl(''),
     userRole: new FormControl(UserRole),
   });
+  addUserRequest:UserRequest=new UserRequest();
 
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder,private service:UserService,private alertService:ToasterService){}
 
   ngOnInit(): void {
-    this.addUserForm = this.formBuilder.group({
-      name: ['', Validators.required],  
-      email: ['', [Validators.required, Validators.email]],
-      contactNo: ['', Validators.required],
-      userRole: [UserRole, Validators.required],
+   
+  }
+
+  addUser(){
+    this.addUserRequest.userRole=Number(this.addUserRequest.userRole);
+    this.service.addUser(this.addUserRequest).subscribe({
+      next: (response) => {
+        this.alertService.fireSuccessSwal("User Added Successfully");
+        
+
+      },
+      error: (err) => {
+        this.alertService.fireErrorSwal(`${err.message}`);
+      }
     })
   }
 
@@ -32,5 +45,12 @@ export class AddUserComponent implements OnInit {
     ) as HTMLDialogElement;
 
     myModalElement.showModal();
+  }
+
+  closeModal() {
+    const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+    if (modal && modal.open) {
+      modal.close();
+    }
   }
 }

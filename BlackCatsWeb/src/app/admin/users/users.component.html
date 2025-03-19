@@ -1,6 +1,5 @@
 <div class="flex items-center justify-end">
   <bcss-add-user></bcss-add-user>
-
 </div>
 <div class="overflow-x-auto">
   <table class="table table-lg table-pin-rows table-pin-cols">
@@ -17,18 +16,117 @@
     </thead>
     <tbody>
       @for (user of users; track $index) {
-      <tr class="hover:bg-gray-800">
+      <tr class="hover:bg-gray-200">
         <td>{{ $index + 1 }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.contactNo }}</td>
-        <td>{{ user.userRole }}</td>
-        <td>{{ user.createdAt }}</td>
-        <td></td>
+        <td>{{ user.userRole | userRole }}</td>
+        <td>{{user.userStatus | status}}</td>
+        <td>{{ user.createdAt | date : "mediumDate" }}</td>
+        <td>
+          <button title="Edit" (click)="openModal(user.id)">
+            <i class="bx bxs-edit"></i>
+          </button>
+          |
+          <button title="Delete" (click)="deleteUser(user.id)">
+            <i class="bx bxs-tag-x"></i>
+          </button>
+        </td>
       </tr>
       }
     </tbody>
   </table>
-
 </div>
 
+<dialog id="my_modal_6" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box max-w-3xl bg-white shadow-xl rounded-lg">
+    <!-- Modal Header -->
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Edit User</h3>
+
+    <!-- Modal Body -->
+    <div class="modal-action m-2">
+      <form #UserEditForm="ngForm" method="dialog" class="space-y-4 w-full">
+        <!-- Name Field -->
+        <div class="flex flex-col space-y-2">
+          <label for="name" class="text-sm font-medium text-gray-700"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter name"
+            name="name"
+            [(ngModel)]="updateRequest.name"
+            class="input input-bordered w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- Contact No Field -->
+        <div class="flex flex-col space-y-2">
+          <label for="contactNo" class="text-sm font-medium text-gray-700"
+            >Contact No</label
+          >
+          <input
+            type="text"
+            id="contactNo"
+            placeholder="Enter contact number"
+            name="contactNo"
+            [(ngModel)]="updateRequest.contactNo"
+            class="input input-bordered w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- User Role Dropdown -->
+        <div class="flex flex-col space-y-2">
+          <label for="userRole" class="text-sm font-medium text-gray-700"
+            >User Role</label
+          >
+          <select
+            id="userRole"
+            name="userRole"
+            [(ngModel)]="updateRequest.userRole"
+            class="select select-bordered w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="1">{{1|userRole}}</option>
+            <option value="2 ">{{2|userRole}}</option>
+            <option value="3">{{3|userRole}}</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col space-y-2">
+          <label for="userStatus" class="text-sm font-medium text-gray-700"
+            >User Status</label
+          >
+          <select
+            id="userStatus"
+            name="userStatus"
+            [(ngModel)]="updateRequest.userStatus"
+            class="select select-bordered w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="1">{{1|status}}</option>
+            <option value="2">{{2|status}}</option>
+          </select>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-end space-x-4 mt-6">
+          <button
+            type="button"
+            class="btn btn-ghost text-gray-600 hover:bg-gray-100"
+            (click)="closeModal()"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary bg-blue-500 text-white hover:bg-blue-600"
+            (click)="editUser()"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</dialog>

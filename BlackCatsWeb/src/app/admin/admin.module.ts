@@ -8,7 +8,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserRolePipe } from '../Pipes/enum.pipe';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UsersComponent } from './users/users.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EdituserComponent } from './edituser/edituser.component';
+import { StatusPipe } from '../Pipes/status.pipe';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserRolePipe,
     UsersComponent,
     AddUserComponent,
+    EdituserComponent,
+    
   ],
-  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule,FormsModule,StatusPipe],
   exports: [AddUserComponent],
 })
 export class AdminModule {}

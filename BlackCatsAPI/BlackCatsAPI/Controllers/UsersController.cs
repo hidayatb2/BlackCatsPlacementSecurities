@@ -20,24 +20,24 @@ namespace BlackCatsAPI.Controllers
             this.service = service;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<IResult> GetAllUsers()
         {
             return this.ApiResult(await service.GetAllUsers());
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public async Task<IResult> AddUsers(UserRequest model) => this.ApiResult(await service.AddUser(model));
 
 
-        // [Authorize]
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IResult> DeleteUserById(Guid Id) => this.ApiResult(await service.DeleteUserById(Id));
 
 
-        //[Authorize]
+        [Authorize]
         [HttpPut]
         public async Task<IResult> UpdateUserById(UserUpdateRequest model) => this.ApiResult(await service.UpdateUser(model));
 
