@@ -4,6 +4,7 @@ using BlackCats_Persistance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlackCats_Persistance.Migrations
 {
     [DbContext(typeof(BCPSDbContext))]
-    partial class BCPSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250416055503_InitiatedNewMig")]
+    partial class InitiatedNewMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -18,7 +18,7 @@ namespace BlackCats_Application.Services
             this.storageService = storageService;
             this.contextAccessor = contextAccessor;
         }
-        public async Task<bool> AddFile(IFormFile File, Guid ClientId)
+        public async Task<string> AddFile(IFormFile File, Guid ClientId)
         {
           var returnPath= await storageService.UploadFileAsync(File);
             string fileType = Path.GetExtension(File.FileName).ToLower();
@@ -40,15 +40,15 @@ namespace BlackCats_Application.Services
                 appFile.FileType = FileType.Image;
             }
             if (ClientId==Guid.Empty)
-                return false;
+                return "Client ";
             else
             {
             var returnVal= await repository.AddAsync(appFile);
 
-            if (returnVal>0)
-                return true;
-            return false;
+                if (returnVal > 0)
+                    return returnPath;
             }
+            return "";
            
         }
 

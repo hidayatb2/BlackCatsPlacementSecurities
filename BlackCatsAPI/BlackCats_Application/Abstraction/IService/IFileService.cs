@@ -11,7 +11,7 @@ namespace BlackCats_Application.Abstraction.IService
 {
     public  interface IFileService
     {
-        Task<bool> AddFile(IFormFile Doc,Guid ClientId);
+        Task<string> AddFile(IFormFile Doc,Guid ClientId);
 
         Task<string> AddFiles (IFormFile[] files);
 

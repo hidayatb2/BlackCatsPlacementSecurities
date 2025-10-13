@@ -9,8 +9,9 @@ import { UserRolePipe } from '../Pipes/enum.pipe';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EdituserComponent } from './edituser/edituser.component';
 import { StatusPipe } from '../Pipes/status.pipe';
+import { AddClientComponent } from './client/add-client/add-client.component';
+import { GetClientComponent } from './client/get-client/get-client.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StatusPipe } from '../Pipes/status.pipe';
     UserRolePipe,
     UsersComponent,
     AddUserComponent,
-    EdituserComponent,
+    AddClientComponent,
+    GetClientComponent
     
   ],
   imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule,FormsModule,StatusPipe],

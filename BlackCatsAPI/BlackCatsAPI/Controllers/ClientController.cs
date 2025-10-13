@@ -22,11 +22,11 @@ namespace BlackCatsAPI.Controllers
 
         [HttpPost]
 
-        public async Task<IResult> AddClient(ClientRequest model) => this.ApiResult(await service.AddClient(model));
+        public async Task<IResult> AddClient([FromForm]ClientRequest model) => this.ApiResult(await service.AddClient(model));
 
         [HttpPut]
 
-        public async Task<IResult> UpdateClient(ClientUpdateRequest model) => this.ApiResult(await service.UpdateCliente(model));
+        public async Task<IResult> UpdateClient([FromForm] ClientUpdateRequest model) => this.ApiResult(await service.UpdateCliente(model));
 
         [HttpGet("{Id}")]
 
