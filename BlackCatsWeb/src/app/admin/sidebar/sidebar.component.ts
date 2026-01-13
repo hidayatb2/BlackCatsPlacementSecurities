@@ -3,7 +3,7 @@ import { AccountService } from '../../Services/account.service';
 
 @Component({
   selector: 'bcss-sidebar',
-  templateUrl: './sidebar.component.html',
+  templateUrl:'./sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent implements OnInit {

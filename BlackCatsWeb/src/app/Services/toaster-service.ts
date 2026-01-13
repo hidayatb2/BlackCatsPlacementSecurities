@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 export class ToasterService {
   fireSuccessSwal(message: string) {
     Swal.fire({
-      position: 'bottom-right',
+      position: 'center',
       icon: 'success',
       title: message,
       showConfirmButton: false,
@@ -16,12 +16,11 @@ export class ToasterService {
 
   fireErrorSwal(message: string) {
     Swal.fire({
-      position: 'bottom-right',
+      position: 'center',
       icon: 'error',
       title: message,
       showConfirmButton: false,
       timer: 2000,
-      width: 50,
       heightAuto: true,
     });
   }

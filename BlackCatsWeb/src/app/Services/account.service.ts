@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, ReplaySubject } from 'rxjs';
+import { map, Observable, ReplaySubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { UserRole } from '../Enums/user-role';
 import { ApiResponse } from '../Model/api-response';
-import { LoginResponse } from '../Model/login';
+import { LoginRequest, LoginResponse } from '../Model/login';
 
 @Injectable({
   providedIn: 'root',
@@ -18,26 +18,17 @@ export class AccountService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  verifyLogin(req: any) {
-    const body = {
-      email: req.value.email,
-      password: req.value.password,
-    };
+  verifyLogin(req: LoginRequest):Observable<ApiResponse<LoginResponse>> {
+    // const body = {
+    //   email: req.value.email,
+    //   password: req.value.password,
+    // };
     return this.http
-      .post<ApiResponse<LoginResponse>>(`${this.baseURL}Account/login`, body)
-      .pipe(
-        map((response: ApiResponse<LoginResponse>) => {
-          const user = response.result;
-          if (user) {
-            localStorage.setItem('user', btoa(JSON.stringify(user)));
-            this.currentUserSource.next(user);
-          }
-        })
-      );
+      .post<ApiResponse<LoginResponse>>(`${this.baseURL}Account/login`, req);
   }
 
   getToken() {
-    let token = localStorage.getItem('user');
+    let token = localStorage.getItem('BCPS-TOKEN');
     if (token !== null) return token;
     return null;
   }
@@ -58,14 +49,14 @@ export class AccountService {
   // }
 
   getCurrentUser() {
-    if (localStorage.getItem('user') == null) return null;
-    const user = JSON.parse(atob(localStorage.getItem('user')!));
+    if (localStorage.getItem('BCPS-TOKEN') == null) return null;
+    const user =localStorage.getItem("BCPS-TOKEN")? JSON.parse(localStorage["BCPS-TOKEN"]) : "";
     this.currentUserSource.next(user);
     return user;
   }
-
+  
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('BCPS-TOKEN');
     this.currentUserSource.next(null!);
     this.router.navigate(['/login']).then(() => {
       window.location.reload();

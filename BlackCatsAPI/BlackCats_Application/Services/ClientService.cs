@@ -22,9 +22,13 @@ namespace BlackCats_Application.Services
         public async Task<APIResponse<ClientResponse>> AddClient(ClientRequest model)
         {
             Client clientModel = mapper.Map<Client>(model);
-            var files = await fileService.AddFile(model.AgreementDocument, clientModel.Id);
+            if(model.AgreementDocument is not null)
+            {
+                var files = await fileService.AddFile(model.AgreementDocument, clientModel.Id);
 
+            }
 
+            model.SecurityDeposit=(int)model.SecurityDeposit;
             var returnVal = await repository.AddAsync(clientModel);
 
             if (returnVal > 0)
@@ -84,8 +88,17 @@ namespace BlackCats_Application.Services
                 client.Address = model.Address;
                 client.ContactNo = model.ContactNo;
                 client.SecurityDeposit = model.SecurityDeposit;
+                var filepath = await fileService.AddFile(model.AgreementDocument, model.ClientId);
                 var res = await repository.UpdateAsync(client);
-                return APIResponse<ClientResponse>.SuccessResponse(mapper.Map<ClientResponse>(res));
+                if (res > 0)
+                {
+                    var response=mapper.Map<ClientResponse>(client);
+                    response.DocumentPath = filepath;
+                return APIResponse<ClientResponse>.SuccessResponse(response);
+
+                }
+                return APIResponse<ClientResponse>.ErrorResponse("there is some error please try again later");
+               
             }
 
         }

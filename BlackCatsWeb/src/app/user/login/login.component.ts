@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from '../../Services/toaster-service';
 import { AccountService } from '../../Services/account.service';
+import { LoginRequest } from '../../Model/login';
 @Component({
   selector: 'bcss-login',
   templateUrl: './login.component.html',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl(),
     password: new FormControl(),
   });
+  loginRequest:LoginRequest=new LoginRequest();
 
   constructor(
     private accountService: AccountService,
@@ -24,8 +26,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   verifyLogin() {
-    this.accountService.verifyLogin(this.loginForm).subscribe({
-      next: () => {
+    this.accountService.verifyLogin(this.loginRequest).subscribe({
+      next: (res) => {
+        localStorage.setItem("BCPS-TOKEN",JSON.stringify(res.result))
         this.toasterService.fireSuccessSwal("Logged In Successfully")
         const redirectUrl =
           this.route.snapshot.queryParamMap.get('redirectUrl');
@@ -36,10 +39,8 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (error) => {
-        if (error.status == 401) {
+        if (error) {
           this.toasterService.fireErrorSwal("Invalid Username or Password");
-        } else {
-          this.toasterService.fireErrorSwal("Something went wrong");
         }
       },
     });

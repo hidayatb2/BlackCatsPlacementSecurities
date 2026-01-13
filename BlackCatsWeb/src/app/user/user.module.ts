@@ -7,7 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user.component';
 import {HttpClientModule } from '@angular/common/http';
 
@@ -24,7 +24,8 @@ import {HttpClientModule } from '@angular/common/http';
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [],
   providers: [],

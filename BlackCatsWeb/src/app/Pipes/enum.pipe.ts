@@ -8,12 +8,11 @@ export class UserRolePipe implements PipeTransform {
   transform(value: number): string {
     switch (value) {
       case UserRole.Admin:
-        return 'Administrator';
+        return 'Admin';
       case UserRole.Manager:
         return 'Manager';
       case UserRole.Staff:
         return 'Staff';
-      // Add more cases as needed
       default:
         return 'Unknown';
     }

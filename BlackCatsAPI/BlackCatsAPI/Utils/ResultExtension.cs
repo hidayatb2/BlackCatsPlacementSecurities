@@ -37,7 +37,7 @@ public class CustomResult<T> : IResult
         var Serialization = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Converters = { new JsonStringEnumConverter() }
+            //Converters = { new JsonStringEnumConverter() }
         };
         var responseJson=JsonSerializer.Serialize(Value,Serialization);
         return context.Response.WriteAsync(responseJson);
